@@ -1,18 +1,7 @@
 (function(){
-  const button=document.querySelector('.sound');
-  if(!button||!('speechSynthesis' in window))return;
+  const buttons=document.querySelectorAll('.sound');
+  if(!buttons.length||!('speechSynthesis' in window))return;
   const femaleHints=['female','woman','zira','jenny','samantha','ava','aria','susan','karen','moira','google us english'];
-  function chooseVoice(){
-    const voices=window.speechSynthesis.getVoices();
-    return voices.find(v=>v.lang.toLowerCase().startsWith('en-us')&&femaleHints.some(h=>v.name.toLowerCase().includes(h)))||voices.find(v=>v.lang.toLowerCase().startsWith('en-us'))||voices.find(v=>v.lang.toLowerCase().startsWith('en'));
-  }
-  button.type='button';button.setAttribute('aria-label','ฟังการออกเสียงคำศัพท์');
-  function speak(){
-    if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();button.textContent='🔊';return}
-    const word=document.querySelector('.word-card h2')?.textContent?.trim();if(!word)return;
-    const utterance=new SpeechSynthesisUtterance(word),voice=chooseVoice();
-    if(voice)utterance.voice=voice;utterance.lang='en-US';utterance.rate=.82;utterance.pitch=1.08;
-    utterance.onstart=()=>{button.textContent='⏹️'};utterance.onend=()=>{button.textContent='🔊'};window.speechSynthesis.speak(utterance);
-  }
-  button.addEventListener('click',speak);window.speechSynthesis.addEventListener('voiceschanged',chooseVoice);
+  const chooseVoice=lang=>{const voices=window.speechSynthesis.getVoices(),prefix=lang.toLowerCase().startsWith('en-uk')?'en-gb':'en-us';return voices.find(v=>v.lang.toLowerCase()===prefix&&femaleHints.some(h=>v.name.toLowerCase().includes(h)))||voices.find(v=>v.lang.toLowerCase()===prefix)||voices.find(v=>v.lang.toLowerCase().startsWith(prefix.slice(0,2)))};
+  buttons.forEach(button=>{button.type='button';button.setAttribute('aria-label',`ฟังการออกเสียงแบบ ${button.dataset.lang}`);button.addEventListener('click',()=>{if(window.speechSynthesis.speaking)window.speechSynthesis.cancel();const word=document.querySelector('.word-card h2')?.textContent?.trim();if(!word)return;buttons.forEach(b=>b.classList.remove('selected'));button.classList.add('selected');const u=new SpeechSynthesisUtterance(word),voice=chooseVoice(button.dataset.lang);if(voice)u.voice=voice;u.lang=button.dataset.lang==='en-UK'?'en-GB':'en-US';u.rate=.82;u.pitch=1.08;button.textContent=button.dataset.lang==='en-UK'?'🇬🇧 en-UK ⏹️':'🇺🇸 en-US ⏹️';u.onend=()=>{button.textContent=button.dataset.lang==='en-UK'?'🇬🇧 en-UK':'🇺🇸 en-US'};window.speechSynthesis.speak(u)})});window.speechSynthesis.addEventListener('voiceschanged',()=>buttons.forEach(b=>chooseVoice(b.dataset.lang)));
 })();
