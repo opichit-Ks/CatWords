@@ -2,7 +2,7 @@
 
 ## Purpose
 
-ภาพ Character Master Sheet ที่อยู่ใน `public/assets/characters/` เป็น Concept Art สำหรับยืนยันทิศทางแบรนด์และโลกของ CatWords ไม่ใช่ชุด Production Asset ที่จะนำไปใช้แบบสุ่มใน WebApp โดยตรง
+ภาพ Character Master Sheet เป็น Concept Art สำหรับยืนยันทิศทางแบรนด์และโลกของ CatWords ไม่ใช่ชุด Production Asset ที่จะนำไปใช้แบบสุ่มใน WebApp โดยตรง
 
 เป้าหมายของ Asset Library คือสร้างชุดภาพมาตรฐานที่ใช้ได้ใน WebApp, Social Media, Sticker, Learning Material และงานต่อยอดอื่น ๆ โดยรักษาหน้าตาและภาษาภาพเดียวกันตลอดโปรเจ็กต์
 
@@ -56,8 +56,7 @@ Loffy ต้องมีทั้งโหมด friendly และ serious-but-
 6. Professor Ink — Reading & Grammar
 7. Luna — Creative Vocabulary
 8. Nova — Science English
-
-Loffy เป็นตัวละครที่เพิ่มเข้ามาในแก๊งและต้องทำต่อในระบบมาตรฐานเดียวกัน โดยรับผิดชอบ Law & Citizenship
+9. Loffy - เป็นตัวละครที่เพิ่มเข้ามาในแก๊งและต้องทำต่อในระบบมาตรฐานเดียวกัน โดยรับผิดชอบ Law & Citizenship
 
 ## Quality rules
 
