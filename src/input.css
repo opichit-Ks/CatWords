@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Anuphan", sans-serif;
+  --font-display: "Poppins", sans-serif;
+  --color-cat-bg: #e8f5fa;
+  --color-cat-ink: #304657;
+  --color-cat-muted: #899aa3;
+  --color-cat-peach: #f6b18a;
+  --color-cat-mint: #78c6aa;
+  --color-cat-lavender: #a79be8;
+  --color-cat-yellow: #f4d486;
+}
+
+@layer base {
+  html { font-family: var(--font-sans); }
+  body { margin: 0; background: var(--color-cat-bg); color: var(--color-cat-ink); }
+  :lang(en), .font-display { font-family: var(--font-display); }
+}
