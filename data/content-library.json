@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "words": [
+    {"id":"daily-thrive-001","word":"thrive","phonetic":"/θraɪv/","partOfSpeech":"verb","thaiMeaning":"เติบโตได้ดี, รุ่งเรือง","exampleSentence":"Plants thrive when they get enough sunlight.","exampleThai":"ต้นไม้เติบโตได้ดีเมื่อได้รับแสงแดดเพียงพอ","level":"easy","category":"daily-life","status":"approved","source":"seed"},
+    {"id":"daily-curious-001","word":"curious","phonetic":"/ˈkjʊəriəs/","partOfSpeech":"adjective","thaiMeaning":"อยากรู้อยากเห็น, ช่างสงสัย","exampleSentence":"Curious minds ask thoughtful questions.","exampleThai":"คนช่างสงสัยมักถามคำถามที่น่าสนใจ","level":"easy","category":"daily-life","status":"approved","source":"seed"},
+    {"id":"daily-gentle-001","word":"gentle","phonetic":"/ˈdʒentl/","partOfSpeech":"adjective","thaiMeaning":"อ่อนโยน, นุ่มนวล","exampleSentence":"Please be gentle with the little kitten.","exampleThai":"โปรดอ่อนโยนกับลูกแมวตัวน้อย","level":"easy","category":"daily-life","status":"approved","source":"seed"},
+    {"id":"daily-journey-001","word":"journey","phonetic":"/ˈdʒɜːrni/","partOfSpeech":"noun","thaiMeaning":"การเดินทาง, เส้นทาง","exampleSentence":"Learning a language is a rewarding journey.","exampleThai":"การเรียนภาษาคือเส้นทางที่คุ้มค่า","level":"easy","category":"daily-life","status":"approved","source":"seed"},
+    {"id":"daily-discover-001","word":"discover","phonetic":"/dɪˈskʌvər/","partOfSpeech":"verb","thaiMeaning":"ค้นพบ, พบสิ่งใหม่","exampleSentence":"Every lesson helps you discover something new.","exampleThai":"ทุกบทเรียนช่วยให้คุณค้นพบสิ่งใหม่","level":"easy","category":"daily-life","status":"approved","source":"seed"},
+    {"id":"food-flavor-001","word":"flavor","phonetic":"/ˈfleɪvər/","partOfSpeech":"noun","thaiMeaning":"รสชาติ","exampleSentence":"This soup has a rich flavor.","exampleThai":"ซุปนี้มีรสชาติเข้มข้น","level":"easy","category":"restaurant","status":"approved","source":"seed"},
+    {"id":"travel-arrive-001","word":"arrive","phonetic":"/əˈraɪv/","partOfSpeech":"verb","thaiMeaning":"มาถึง","exampleSentence":"We arrive at the airport early.","exampleThai":"พวกเรามาถึงสนามบินแต่เช้า","level":"easy","category":"travel","status":"approved","source":"seed"},
+    {"id":"health-recover-001","word":"recover","phonetic":"/rɪˈkʌvər/","partOfSpeech":"verb","thaiMeaning":"ฟื้นตัว, หายป่วย","exampleSentence":"She needs time to recover.","exampleThai":"เธอต้องใช้เวลาเพื่อฟื้นตัว","level":"intermediate","category":"medical","status":"approved","source":"seed"},
+    {"id":"law-right-001","word":"right","phonetic":"/raɪt/","partOfSpeech":"noun","thaiMeaning":"สิทธิ","exampleSentence":"Everyone has the right to be heard.","exampleThai":"ทุกคนมีสิทธิที่จะได้รับการรับฟัง","level":"easy","category":"law-citizenship","status":"approved","source":"seed"},
+    {"id":"science-observe-001","word":"observe","phonetic":"/əbˈzɜːrv/","partOfSpeech":"verb","thaiMeaning":"สังเกต","exampleSentence":"Scientists observe changes carefully.","exampleThai":"นักวิทยาศาสตร์สังเกตการเปลี่ยนแปลงอย่างรอบคอบ","level":"intermediate","category":"science","status":"approved","source":"seed"}
+  ],
+  "quizzes": [
+    {"id":"quiz-thrive-001","type":"multiple-choice","vocabularyIds":["daily-thrive-001"],"question":"What does “thrive” mean?","options":["เติบโตได้ดี, รุ่งเรือง","หยุดพัก","เดินทาง","ลืม"],"correctAnswer":"เติบโตได้ดี, รุ่งเรือง","explanation":"Thrive means to grow or develop well.","status":"approved"},
+    {"id":"quiz-curious-001","type":"multiple-choice","vocabularyIds":["daily-curious-001"],"question":"What does “curious” describe?","options":["อยากรู้อยากเห็น","เหนื่อยมาก","เงียบสงบ","รวดเร็ว"],"correctAnswer":"อยากรู้อยากเห็น","explanation":"Curious describes someone who wants to know more.","status":"approved"},
+    {"id":"quiz-gentle-001","type":"multiple-choice","vocabularyIds":["daily-gentle-001"],"question":"Choose the meaning of “gentle”.","options":["อ่อนโยน, นุ่มนวล","แข็งแรงมาก","หิว","เสียงดัง"],"correctAnswer":"อ่อนโยน, นุ่มนวล","explanation":"Gentle means kind, soft, and not rough.","status":"approved"},
+    {"id":"quiz-journey-001","type":"multiple-choice","vocabularyIds":["daily-journey-001"],"question":"A “journey” is a…","options":["การเดินทาง, เส้นทาง","อาหาร","การประชุม","ความฝัน"],"correctAnswer":"การเดินทาง, เส้นทาง","explanation":"A journey is travel from one place to another.","status":"approved"},
+    {"id":"quiz-discover-001","type":"multiple-choice","vocabularyIds":["daily-discover-001"],"question":"What does “discover” mean?","options":["ค้นพบ, พบสิ่งใหม่","ซ่อน","ทำอาหาร","นอนหลับ"],"correctAnswer":"ค้นพบ, พบสิ่งใหม่","explanation":"Discover means to find something for the first time.","status":"approved"}
+  ],
+  "lessons": [
+    {"id":"lesson-daily-life-001","level":"easy","category":"daily-life","wordIds":["daily-thrive-001","daily-curious-001","daily-gentle-001","daily-journey-001","daily-discover-001"],"quizIds":["quiz-thrive-001","quiz-curious-001","quiz-gentle-001","quiz-journey-001","quiz-discover-001"],"status":"approved"}
+  ]
+}
