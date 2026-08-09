@@ -1,0 +1,19 @@
+/* Shared Mochi scale: larger on desktop, balanced on mobile. */
+@media (min-width:651px){
+  .hero img{width:370px;height:410px;right:35px;bottom:-48px}
+  .mission img{width:208px;height:240px;right:-2px;bottom:-28px}
+  .coach img{height:254px}
+  .mochi{width:247px;height:319px;right:8px;bottom:-10px}
+  .lesson img,.quiz img{width:195px;height:286px}
+  .achievement img{width:208px;height:286px}
+  .cat-avatar img{width:98px!important;height:107px!important}
+}
+@media (max-width:650px){
+  .hero img{width:min(357px,78vw);height:auto;right:-18px;bottom:-34px}
+  .mission img{width:min(190px,52vw);height:auto;right:-8px;bottom:-22px}
+  .coach img{height:190px}
+  .mochi{width:min(225px,62vw);height:auto;right:-8px;bottom:-12px}
+  .lesson img,.quiz img{width:min(145px,38vw);height:auto}
+  .achievement img{width:min(155px,42vw);height:auto}
+  .cat-avatar img{width:78px!important;height:86px!important}
+}
