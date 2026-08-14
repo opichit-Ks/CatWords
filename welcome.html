@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="data/catwords.css">
 <style>
   body { min-height:100vh; display:grid; place-items:center; padding:24px; }
-  .welcome { width:min(560px,100%); background:var(--surface-glass); border:1px solid rgba(255,255,255,.9); border-radius:28px; box-shadow:var(--shadow); padding:38px 34px; text-align:center; }
+  .welcome { width:min(560px,100%); background:var(--surface-glass); border:1px solid rgba(255,255,255,.9); border-radius:28px; box-shadow:var(--shadow); padding:28px 20px; text-align:center; }
   .welcome .mochi { width:150px; margin:0 auto 6px; display:block; }
   .welcome .brand-row { display:flex; align-items:center; justify-content:center; gap:10px; color:var(--navy); margin-bottom:10px; }
   .welcome .brand-row b { font:800 20px var(--font-display); }
@@ -25,7 +25,7 @@
     background:var(--surface); color:var(--ink); font-size:14px; outline:none; transition:.2s;
   }
   .field input:focus { border-color:var(--peach); }
-  .levels { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .levels { display:grid; grid-template-columns:1fr; gap:10px; }
   .level {
     border:1.5px solid var(--line); border-radius:16px; padding:15px 10px; cursor:pointer;
     background:var(--surface); text-align:center; transition:.2s;
@@ -38,9 +38,9 @@
   .start { width:100%; padding:14px; border-radius:15px; font-size:14px; margin-top:8px; }
   .skip { display:block; margin-top:14px; color:var(--muted); font-size:12px; text-decoration:none; }
   .skip:hover { color:var(--peach-deep); }
-  @media (max-width:480px) {
-    .welcome { padding:28px 20px; }
-    .levels { grid-template-columns:1fr; }
+  @media (min-width:481px) {
+    .welcome { padding:38px 34px; }
+    .levels { grid-template-columns:repeat(3,1fr); }
   }
 </style>
 </head>

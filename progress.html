@@ -10,17 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="data/catwords.css">
 <style>
-  .summary { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .summary { display:grid; grid-template-columns:1fr; gap:14px; }
   .summary div { background:var(--surface-soft); border-radius:15px; padding:16px; }
   .summary b, .summary small { display:block; }
   .summary b { font:700 23px var(--font-display); margin-top:4px; }
   .summary small { color:var(--muted); font-size:10px; }
-  .bars { height:140px; display:flex; align-items:end; justify-content:space-around; gap:14px; }
-  .bars span { width:34px; background:var(--peach); border-radius:8px 8px 3px 3px; position:relative; }
+  .bars { height:140px; display:flex; align-items:end; justify-content:space-around; gap:10px; }
+  .bars span { width:28px; background:var(--peach); border-radius:8px 8px 3px 3px; position:relative; }
   .bars span:nth-child(2), .bars span:nth-child(5) { background:var(--mint); }
   .bars span:nth-child(3) { background:var(--lav); }
   .bars i { position:absolute; bottom:-22px; width:100%; text-align:center; color:var(--muted); font-size:10px; font-style:normal; }
-  .achievements { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .achievements { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
   .achievement { background:var(--surface); border-radius:16px; padding:17px; text-align:center; }
   .achievement span { display:block; font-size:29px; }
   .achievement b { display:block; font-size:12px; margin-top:7px; }
@@ -30,12 +30,14 @@
   .achievement.locked { opacity:.55; }
   .achievement.locked span { filter:grayscale(.9); opacity:.6; }
 
-  @media (max-width:900px) { .achievements { grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:650px) {
-    .summary { grid-template-columns:1fr; }
-    .panel { padding:18px; }
-    .bars { gap:10px; }
-    .bars span { width:28px; }
+  @media (min-width:651px) {
+    .summary { grid-template-columns:repeat(3,1fr); }
+    .panel { padding:23px; }
+    .bars { gap:14px; }
+    .bars span { width:34px; }
+  }
+  @media (min-width:901px) {
+    .achievements { grid-template-columns:repeat(4,1fr); }
   }
 </style>
 </head>
@@ -91,14 +93,15 @@
       <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียน</a>
       <a data-page="reading" href="reading.html"><span>📚</span>อ่าน</a>
       <a data-page="progress" href="progress.html"><span>📈</span>ก้าวหน้า</a>
-      <a data-page="collection" href="collection.html"><span>🎒</span>ตัวละคร</a>
-      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+      <button type="button" class="bottom-more" aria-label="เมนูเพิ่มเติม"><span>⋯</span>เพิ่มเติม</button>
     </nav>
   </main>
 </div>
 <script src="data/settings-store.js"></script>
 <script src="data/progress-store.js"></script>
 <script src="data/app-shell.js"></script>
+<script src="data/theme-toggle.js"></script>
+<script src="data/more-menu.js"></script>
 <script src="data/progress.js"></script>
 <script src="data/back-to-top.js"></script>
 </body>

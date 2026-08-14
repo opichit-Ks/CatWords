@@ -16,16 +16,16 @@
   .streak b { font:700 16px var(--font-display); }
   .streak small { font-size:10px; color:#a7946e; }
 
-  .hero { height:285px; border-radius:25px; position:relative; overflow:hidden; background:linear-gradient(112deg,#f9d7c0,#f7c5a5); padding:34px 38px; box-shadow:var(--shadow); }
-  .hero h2 { font:700 29px var(--font-display); color:#634b42; line-height:1.28; margin:9px 0 5px; }
+  .hero { height:375px; border-radius:24px; position:relative; overflow:hidden; background:linear-gradient(112deg,#f9d7c0,#f7c5a5); padding:26px 24px; box-shadow:var(--shadow); }
+  .hero h2 { font:700 25px var(--font-display); color:#634b42; line-height:1.28; margin:9px 0 5px; }
   .hero h2 em { font-style:normal; color:#fff; }
   .hero p { color:#936d5a; font-size:13px; margin:0 0 20px; }
-  .hero img { position:absolute; width:285px; height:315px; object-fit:contain; right:54px; bottom:-37px; filter:drop-shadow(0 13px 13px rgba(122,91,73,.16)); }
-  .cloud { position:absolute; right:35px; top:22px; font-size:32px; opacity:.6; }
+  .hero img { position:absolute; width:275px; height:285px; object-fit:contain; right:-10px; bottom:-27px; filter:drop-shadow(0 13px 13px rgba(122,91,73,.16)); }
+  .cloud { display:none; }
   html.dark .hero { filter:brightness(.88); }
 
-  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-top:24px; }
-  .stat { background:var(--surface-glass); border:1px solid rgba(255,255,255,.9); border-radius:18px; box-shadow:var(--shadow); padding:16px; display:flex; align-items:center; gap:13px; }
+  .stats { display:grid; grid-template-columns:1fr; gap:15px; margin-top:16px; }
+  .stat { background:var(--surface-glass); border:1px solid rgba(255,255,255,.9); border-radius:18px; box-shadow:var(--shadow); padding:13px; display:flex; align-items:center; gap:13px; }
   .stat-icon { width:41px; height:41px; border-radius:13px; display:grid; place-items:center; font-size:18px; }
   .peach { background:var(--peach-soft); }
   .mint { background:var(--mint-soft); }
@@ -35,13 +35,13 @@
   .bar { height:5px; width:115px; background:var(--line); border-radius:4px; margin-top:7px; }
   .bar span { display:block; height:100%; width:80%; border-radius:4px; background:var(--mint); }
 
-  .section { display:flex; justify-content:space-between; align-items:center; margin:32px 0 14px; }
+  .section { display:flex; justify-content:space-between; align-items:center; margin:27px 4px 13px; }
   .section h2 { font:700 18px var(--font-display); margin:0; }
   .section a { font-size:12px; color:var(--peach-text); text-decoration:none; }
 
-  .panels { display:grid; grid-template-columns:1.15fr 1fr; gap:16px; }
+  .panels { display:grid; grid-template-columns:1fr; gap:12px; }
   .panel { padding:21px; }
-  .mission { background:linear-gradient(125deg,#e9f7f0,#d7efe3); min-height:190px; position:relative; overflow:hidden; }
+  .mission { background:linear-gradient(125deg,#e9f7f0,#d7efe3); min-height:195px; position:relative; overflow:hidden; }
   html.dark .mission { filter:brightness(.88); }
   .mission h3 { font:700 23px var(--font-display); margin:7px 0; }
   .mission p { font-size:12px; color:#729486; margin:0 0 17px; }
@@ -59,7 +59,7 @@
   .task .tag { margin-left:auto; }
 
   /* Meowville districts */
-  .districts { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .districts { display:grid; grid-template-columns:repeat(2,1fr); gap:11px; }
   .district { background:var(--surface-glass); border:1px solid rgba(255,255,255,.9); border-radius:18px; box-shadow:var(--shadow); padding:16px; text-align:center; position:relative; overflow:hidden; transition:transform .2s; }
   .district:hover { transform:translateY(-3px); }
   .district .d-icon { font-size:30px; display:block; }
@@ -71,22 +71,22 @@
   .district.locked::after { content:"🔒"; position:absolute; top:10px; right:12px; font-size:14px; }
   .district .d-teacher { display:inline-block; margin-top:9px; font-size:9px; border-radius:16px; padding:4px 9px; background:var(--peach-soft); color:var(--peach-strong); }
 
-  @media (max-width:900px) {
-    .districts { grid-template-columns:repeat(3,1fr); }
-    .panels { grid-template-columns:1fr; }
-    .hero img { right:5px; }
+  @media (min-width:651px) {
+    .hero { height:285px; border-radius:25px; padding:34px 38px; }
+    .hero h2 { font-size:29px; }
+    .hero img { width:285px; height:315px; right:5px; bottom:-37px; }
+    .cloud { display:block; }
+    .stats { grid-template-columns:repeat(3,1fr); margin-top:24px; }
+    .stat { padding:16px; }
+    .section { margin:32px 0 14px; }
+    .panels { grid-template-columns:1fr; gap:16px; }
+    .mission { min-height:190px; }
+    .districts { grid-template-columns:repeat(3,1fr); gap:14px; }
   }
-  @media (max-width:650px) {
-    .hero { height:375px; border-radius:24px; padding:26px 24px; }
-    .hero h2 { font-size:25px; }
-    .hero img { width:275px; height:285px; right:-10px; bottom:-27px; }
-    .cloud { display:none; }
-    .stats { grid-template-columns:1fr; margin-top:16px; }
-    .stat { padding:13px; }
-    .section { margin:27px 4px 13px; }
-    .panels { gap:12px; }
-    .mission { min-height:195px; }
-    .districts { grid-template-columns:repeat(2,1fr); gap:11px; }
+  @media (min-width:901px) {
+    .hero img { right:54px; }
+    .panels { grid-template-columns:1.15fr 1fr; }
+    .districts { grid-template-columns:repeat(4,1fr); }
   }
 </style>
 </head>
@@ -163,8 +163,7 @@
       <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียน</a>
       <a data-page="reading" href="reading.html"><span>📚</span>อ่าน</a>
       <a data-page="progress" href="progress.html"><span>📈</span>ก้าวหน้า</a>
-      <a data-page="collection" href="collection.html"><span>🎒</span>ตัวละคร</a>
-      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+      <button type="button" class="bottom-more" aria-label="เมนูเพิ่มเติม"><span>⋯</span>เพิ่มเติม</button>
     </nav>
   </main>
 </div>
@@ -173,6 +172,8 @@
 <script src="data/progress-store.js"></script>
 <script src="data/characters.js"></script>
 <script src="data/app-shell.js"></script>
+<script src="data/theme-toggle.js"></script>
+<script src="data/more-menu.js"></script>
 <script src="data/dashboard.js"></script>
 <script src="data/back-to-top.js"></script>
 </body>

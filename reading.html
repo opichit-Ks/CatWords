@@ -10,17 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="data/catwords.css">
 <style>
-  .story-meta { display:flex; gap:18px; align-items:center; }
-  .story-meta img { width:118px; height:150px; object-fit:contain; border-radius:16px; background:var(--surface-soft); flex:none; }
+  .story-meta { display:flex; flex-direction:column; gap:18px; align-items:center; text-align:center; }
+  .story-meta img { width:96px; height:120px; object-fit:contain; border-radius:16px; background:var(--surface-soft); flex:none; }
   .story-meta .meta-info { min-width:0; }
   .story-meta h2 { font:700 22px var(--font-display); margin:6px 0 3px; }
   .story-meta .title-th { color:var(--muted); font-size:13px; margin:0; }
-  .story-meta .meta-tags { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  .story-meta .meta-tags { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; justify-content:center; }
   .story-meta .meta-tags span { font-size:10px; font-weight:700; border-radius:16px; padding:5px 11px; background:var(--peach-soft); color:var(--peach-strong); }
   .story-meta .meta-tags span.level { background:var(--lav-soft); color:#8b7fd0; }
 
-  .chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:13px; }
-  .chip { display:flex; flex-direction:column; gap:2px; text-align:left; border:1.5px solid var(--line); background:var(--surface); border-radius:13px; padding:9px 13px; cursor:pointer; transition:.15s; color:var(--ink); }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:13px; }
+  .chip { display:flex; flex-direction:column; gap:2px; text-align:left; border:1.5px solid var(--line); background:var(--surface); border-radius:13px; padding:8px 11px; cursor:pointer; transition:.15s; color:var(--ink); }
   .chip:hover { border-color:var(--mint); background:var(--mint-soft); transform:translateY(-1px); }
   .chip b { font:700 14px var(--font-display); }
   .chip small { font-size:10px; color:var(--muted); }
@@ -29,7 +29,7 @@
   .story-box .story-head h2 { font:700 19px var(--font-display); margin:0; }
   .story-box .toggle-translation { border:1.5px solid var(--line); background:var(--surface); border-radius:12px; padding:9px 14px; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; }
   .story-box .toggle-translation.on { border-color:var(--mint); color:var(--mint-text); background:var(--mint-soft); }
-  .story-para { font:400 16px/1.95 var(--font-display); color:var(--ink); margin:17px 0 0; }
+  .story-para { font:400 15px/1.95 var(--font-display); color:var(--ink); margin:17px 0 0; }
   .story-word { background:var(--mint-soft); color:var(--mint-text); border-radius:6px; padding:1px 5px; font-weight:700; cursor:pointer; border-bottom:2px solid var(--mint); }
   .story-word:hover { filter:brightness(.95); }
   .translation-para { display:none; margin:8px 0 0; font-size:13px; color:var(--muted); line-height:1.9; }
@@ -70,13 +70,13 @@
   .word-sheet .meaning { font-size:14px; margin:14px 0 4px; }
   .word-sheet .hint { font-size:11px; color:var(--muted); margin-top:12px; }
 
-  @media (max-width:650px) {
-    .story-meta { flex-direction:column; text-align:center; }
-    .story-meta img { width:96px; height:120px; }
-    .story-meta .meta-tags { justify-content:center; }
-    .chips { gap:8px; }
-    .chip { padding:8px 11px; }
-    .story-para { font-size:15px; }
+  @media (min-width:651px) {
+    .story-meta { flex-direction:row; text-align:left; }
+    .story-meta img { width:118px; height:150px; }
+    .story-meta .meta-tags { justify-content:flex-start; }
+    .chips { gap:9px; }
+    .chip { padding:9px 13px; }
+    .story-para { font-size:16px; }
   }
 </style>
 </head>
@@ -120,8 +120,7 @@
       <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียน</a>
       <a data-page="reading" href="reading.html"><span>📚</span>อ่าน</a>
       <a data-page="progress" href="progress.html"><span>📈</span>ก้าวหน้า</a>
-      <a data-page="collection" href="collection.html"><span>🎒</span>ตัวละคร</a>
-      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+      <button type="button" class="bottom-more" aria-label="เมนูเพิ่มเติม"><span>⋯</span>เพิ่มเติม</button>
     </nav>
   </main>
 </div>
@@ -134,6 +133,8 @@
 <script src="data/characters.js"></script>
 <script src="data/content-loader.js"></script>
 <script src="data/app-shell.js"></script>
+<script src="data/theme-toggle.js"></script>
+<script src="data/more-menu.js"></script>
 <script src="data/reading.js"></script>
 <script src="data/audio.js"></script>
 <script src="data/back-to-top.js"></script>

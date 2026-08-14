@@ -18,7 +18,9 @@ Unlock order (by level): mochi 1, doctor-paws 2, chef-momo 3, pixel 4, captain-w
 
 ## Important files
 
-- `data/catwords.css`: single source of truth for design tokens, app shell layout and dark theme. Page-specific CSS stays in each page.
+- `data/catwords.css`: single source of truth for design tokens, app shell layout and dark theme. **Mobile-first**: base styles target phones, `min-width: 651px` / `901px` media queries grow to tablet/desktop. Page-specific CSS stays in each page (same mobile-first convention).
+- `data/theme-toggle.js`: injects a light/dark toggle button into the top bar on every page (mobile included, no need to open Settings).
+- `data/more-menu.js`: mobile bottom nav shows 4 primary items + a ⋯ More button that opens a slide-up sheet (Collection + Settings). The More button is highlighted when its pages are active.
 - `data/settings-store.js`: `catwords-settings` key — displayName, learningLevel, theme, voice.
 - `data/app-shell.js`: sets nav active state, profile bar (name/level) and `[data-today]` dates on every page.
 - `data/characters.js`: roster + Meowville districts data (`CatWordsCharacters`).

@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="data/catwords.css">
 <style>
-  .cats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .cats { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
   .cat { background:var(--surface); border-radius:16px; padding:17px; text-align:center; cursor:pointer; transition:transform .2s, box-shadow .2s; }
   .cat:hover:not(.locked) { transform:translateY(-3px); box-shadow:var(--shadow); }
   .cat-avatar {
@@ -33,21 +33,23 @@
   .cat.locked .cat-avatar span { filter:grayscale(.9); opacity:.55; }
   .cat.locked em { color:var(--peach-strong); }
 
-  .family-detail { display:flex; align-items:center; gap:24px; margin-top:18px; }
-  .family-detail .fd-image { width:150px; flex:none; }
+  .family-detail { display:flex; flex-direction:column; align-items:center; gap:24px; margin-top:18px; text-align:center; }
+  .family-detail .fd-image { width:130px; flex:none; }
   .family-detail .fd-image img { width:100%; border-radius:18px; display:block; background:var(--surface-soft); }
   .family-detail h2 { font:700 22px var(--font-display); margin:0 0 4px; }
   .family-detail .role { color:var(--peach-text); font-size:11px; font-weight:700; letter-spacing:1px; }
-  .family-detail p { font-size:13px; color:var(--muted); line-height:1.7; margin:10px 0 14px; max-width:480px; }
-  .family-detail .fd-actions { display:flex; gap:10px; align-items:center; }
+  .family-detail p { font-size:13px; color:var(--muted); line-height:1.7; margin:10px 0 14px; max-width:100%; }
+  .family-detail .fd-actions { display:flex; gap:10px; align-items:center; justify-content:center; }
   .family-detail .fav { font-size:12px; color:var(--muted); }
 
-  @media (max-width:900px) { .cats { grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:650px) {
-    .family-detail { flex-direction:column; text-align:center; }
-    .family-detail .fd-image { width:130px; }
-    .family-detail p { max-width:100%; }
-    .family-detail .fd-actions { justify-content:center; }
+  @media (min-width:651px) {
+    .family-detail { flex-direction:row; text-align:left; }
+    .family-detail .fd-image { width:150px; }
+    .family-detail p { max-width:480px; }
+    .family-detail .fd-actions { justify-content:flex-start; }
+  }
+  @media (min-width:901px) {
+    .cats { grid-template-columns:repeat(4,1fr); }
   }
 </style>
 </head>
@@ -92,8 +94,7 @@
       <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียน</a>
       <a data-page="reading" href="reading.html"><span>📚</span>อ่าน</a>
       <a data-page="progress" href="progress.html"><span>📈</span>ก้าวหน้า</a>
-      <a data-page="collection" href="collection.html"><span>🎒</span>ตัวละคร</a>
-      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+      <button type="button" class="bottom-more" aria-label="เมนูเพิ่มเติม"><span>⋯</span>เพิ่มเติม</button>
     </nav>
   </main>
 </div>
@@ -102,6 +103,8 @@
 <script src="data/progress-store.js"></script>
 <script src="data/characters.js"></script>
 <script src="data/app-shell.js"></script>
+<script src="data/theme-toggle.js"></script>
+<script src="data/more-menu.js"></script>
 <script src="data/family-hub.js"></script>
 <script src="data/back-to-top.js"></script>
 </body>

@@ -43,6 +43,7 @@
   const update = (patch) => {
     const state = write({ ...read(), ...patch });
     applyTheme(state.theme);
+    global.dispatchEvent(new CustomEvent('catwords-settings-change', { detail: state }));
     return state;
   };
 

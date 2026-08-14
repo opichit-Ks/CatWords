@@ -11,12 +11,12 @@
 <link rel="stylesheet" href="data/catwords.css">
 <style>
   .settings-grid { display:grid; gap:16px; max-width:640px; }
-  .setting-row { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0; border-bottom:1px solid var(--line-2); }
+  .setting-row { display:flex; flex-direction:column; align-items:flex-start; gap:10px; padding:14px 0; border-bottom:1px solid var(--line-2); }
   .setting-row:last-child { border:0; }
   .setting-row b { font-size:13px; display:block; }
   .setting-row small { font-size:10px; color:var(--muted); }
   .setting-row input[type="text"] {
-    width:220px; padding:10px 13px; border:1.5px solid var(--line); border-radius:12px;
+    width:100%; padding:10px 13px; border:1.5px solid var(--line); border-radius:12px;
     background:var(--surface); color:var(--ink); font-size:13px; outline:none;
   }
   .setting-row input[type="text"]:focus { border-color:var(--peach); }
@@ -33,9 +33,9 @@
   .danger button { background:var(--peach-soft); color:var(--peach-strong); border:1.5px solid var(--peach); }
   .danger button:hover { filter:brightness(.97); }
   .avatar-lg { width:64px; height:64px; border-radius:20px; font-size:34px; }
-  @media (max-width:560px) {
-    .setting-row { flex-direction:column; align-items:flex-start; gap:10px; }
-    .setting-row input[type="text"] { width:100%; }
+  @media (min-width:561px) {
+    .setting-row { flex-direction:row; align-items:center; justify-content:space-between; gap:14px; }
+    .setting-row input[type="text"] { width:220px; }
   }
 </style>
 </head>
@@ -131,14 +131,15 @@
       <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียน</a>
       <a data-page="reading" href="reading.html"><span>📚</span>อ่าน</a>
       <a data-page="progress" href="progress.html"><span>📈</span>ก้าวหน้า</a>
-      <a data-page="collection" href="collection.html"><span>🎒</span>ตัวละคร</a>
-      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+      <button type="button" class="bottom-more" aria-label="เมนูเพิ่มเติม"><span>⋯</span>เพิ่มเติม</button>
     </nav>
   </main>
 </div>
 <script src="data/settings-store.js"></script>
 <script src="data/progress-store.js"></script>
 <script src="data/app-shell.js"></script>
+<script src="data/theme-toggle.js"></script>
+<script src="data/more-menu.js"></script>
 <script>
   (function () {
     if (!window.CatWordsSettings) return;

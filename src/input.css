@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: "Anuphan", sans-serif;
-  --font-display: "Poppins", sans-serif;
+  --font-display: "Poppins", "Anuphan", sans-serif;
   --color-cat-bg: #e8f5fa;
   --color-cat-ink: #304657;
   --color-cat-muted: #899aa3;
