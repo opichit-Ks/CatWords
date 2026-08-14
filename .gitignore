@@ -15,3 +15,8 @@ dist/
 build/
 .next/
 coverage/
+
+# Local app data and scratch files
+.freebuff/
+_inspect*.html
+*.log

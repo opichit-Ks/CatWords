@@ -1,1 +1,44 @@
-(function(){const state=JSON.parse(localStorage.getItem('catwords-mvp-progress')||'{"xp":0,"coins":0,"completed":false,"quizScore":0}');const summary=document.querySelector('.summary');if(!summary)return;summary.innerHTML=`<div><small>Daily Streak</small><b>7 วัน 🔥</b></div><div><small>XP วันนี้</small><b>${state.xp||0}</b></div><div><small>Fish Coins</small><b>${state.coins||0}</b></div>`;const title=document.querySelector('.intro h1');if(title&&state.completed){const note=document.createElement('p');note.className='muted';note.textContent=`วันนี้เรียนจบแล้ว · Quiz ${state.quizScore||0}/5`;title.parentNode.appendChild(note)}})();
+(function () {
+  if (!window.CatWordsProgress) return;
+  const state = window.CatWordsProgress.read();
+  const summary = document.querySelector('.summary');
+  if (!summary) return;
+
+  summary.innerHTML = `<div><small>Daily Streak</small><b>${state.currentStreak} วัน 🔥</b></div><div><small>XP ทั้งหมด</small><b>${state.xp}</b></div><div><small>คำศัพท์ที่เรียน</small><b>${state.wordsLearned}</b></div>`;
+
+  // Weekly bars
+  const today = new Date();
+  const mondayOffset = (today.getDay() + 6) % 7;
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - mondayOffset);
+  document.querySelectorAll('.bars span').forEach((bar, index) => {
+    const day = new Date(monday);
+    day.setDate(monday.getDate() + index);
+    const date = window.CatWordsProgress.localDate(day);
+    const completed = state.completedDates.includes(date);
+    bar.style.height = completed ? '100%' : '12%';
+    bar.setAttribute('aria-label', completed ? 'เรียนสำเร็จ' : 'ยังไม่ได้เรียน');
+  });
+
+  // Achievements derived from real learner state
+  const level = window.CatWordsProgress.levelFor(state.xp);
+  const achievements = [
+    { icon: '🌟', name: 'First Step', earned: state.lessonsCompleted >= 1, requirement: 'เรียนจบ 1 บทเรียน' },
+    { icon: '🔥', name: 'On a Roll', earned: state.currentStreak >= 3, requirement: 'สตรีค 3 วัน' },
+    { icon: '📚', name: 'Bookworm', earned: state.wordsLearned >= 25, requirement: 'เรียนครบ 25 คำ' },
+    { icon: '🐟', name: 'Fish Tycoon', earned: state.coins >= 100, requirement: 'สะสม 100 เหรียญ' },
+    { icon: '🧠', name: 'Quiz Star', earned: state.lessonsCompleted >= 5, requirement: 'เรียนจบ 5 บทเรียน' },
+    { icon: '🎓', name: 'Scholar', earned: level >= 3, requirement: 'ถึง Level 3' },
+    { icon: '⚡', name: 'Speed Learner', earned: state.quizScore >= 5, requirement: 'Quiz เต็ม 5/5' },
+    { icon: '🏆', name: 'Champion', earned: state.currentStreak >= 7, requirement: 'สตรีค 7 วัน' }
+  ];
+  const box = document.querySelector('#achievements');
+  if (box) {
+    box.innerHTML = achievements.map((achievement) => `
+      <div class="achievement ${achievement.earned ? 'earned' : 'locked'}">
+        <span>${achievement.icon}</span>
+        <b>${achievement.name}</b>
+        <small>${achievement.earned ? '✅ สำเร็จแล้ว' : achievement.requirement}</small>
+      </div>`).join('');
+  }
+})();

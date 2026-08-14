@@ -1,1 +1,169 @@
-(function(){const key='catwords-mvp-progress',saved=JSON.parse(localStorage.getItem(key)||'{"word":0,"xp":0,"coins":0,"completed":false,"quizScore":0}'),words=window.CATWORDS_CONTENT.words,card=document.querySelector('.word-card');if(!card)return;let index=0;const persist=()=>localStorage.setItem(key,JSON.stringify(saved));const toast=m=>{let t=document.querySelector('.toast');if(!t){t=document.createElement('div');t.className='toast';document.body.append(t)}t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)};function word(){const w=words[index];card.querySelector('.progress-row span').textContent=`คำที่ ${index+1} จาก 5`;card.querySelector('.bar span').style.width=`${(index+1)*20}%`;card.querySelector('h2').textContent=w.word;card.querySelector('.pronounce').firstChild.textContent=w.phonetic+' ';card.querySelector('.tag').textContent=w.type;card.querySelector('.info p').textContent=w.meaning;card.querySelector('.example p').innerHTML=`“${w.example.replace(w.word,`<b>${w.word}</b>`)}”`;card.querySelector('.example span').textContent=w.thai;card.querySelector('.primary').textContent=index===4?'เริ่ม Daily Quiz →':'เข้าใจแล้ว →'}function quiz(){let q=0,score=0,answers=[];card.innerHTML=`<div class="progress-row"><span>Quiz ข้อ 1 จาก 5</span><div class="bar"><span style="width:20%"></span></div></div><div class="word-icon">🧠</div><h2 style="font-family:Anuphan">Daily Quiz</h2><p class="pronounce" style="font-family:Anuphan">ทบทวนคำศัพท์วันนี้ไปพร้อมกับ Mochi</p><div class="info"><small id="quiz-question"></small><div id="quiz-options"></div></div><div class="actions"><button class="secondary" id="quiz-back">← กลับไปทบทวน</button><button class="primary" id="quiz-next" disabled>เลือกคำตอบก่อน</button></div>`;const question=card.querySelector('#quiz-question'),options=card.querySelector('#quiz-options'),next=card.querySelector('#quiz-next');function paint(){const w=words[q];question.textContent=`What does “${w.word}” mean?`;options.innerHTML=[w.meaning,words[(q+1)%5].meaning,words[(q+2)%5].meaning].sort(()=>Math.random()-.5).map(x=>`<button class="quiz-option" style="display:block;width:100%;margin-top:9px;padding:10px;border:1px solid #edf0ee;border-radius:10px;background:#fffdfa;text-align:left">${x}</button>`).join('');next.disabled=true;options.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{options.querySelectorAll('button').forEach(b=>b.disabled=true);const correct=btn.textContent===w.meaning;answers[q]={word:w.word,selected:btn.textContent,correctAnswer:w.meaning,correct};btn.style.background=correct?'#e6f6ee':'#fff0e7';if(correct){score++;toast('ถูกต้อง! +10 XP ✨')}else toast(`คำตอบคือ “${w.meaning}”`);next.disabled=false;next.textContent=q===4?'ดูผลลัพธ์':'ข้อต่อไป →'})}paint();next.onclick=()=>{if(q<4){q++;card.querySelector('.progress-row span').textContent=`Quiz ข้อ ${q+1} จาก 5`;card.querySelector('.bar span').style.width=`${(q+1)*20}%`;paint()}else{saved.quizScore=score;saved.coins+=score*2;persist();result(answers,score)}};card.querySelector('#quiz-back').onclick=()=>{index=0;word()}}function result(answers,score){card.innerHTML=`<div class="word-icon">🏆</div><h2 style="font-family:Anuphan">สรุปผล Daily Quiz</h2><p class="pronounce" style="font-family:Anuphan">คุณตอบถูก ${score} จาก 5 ข้อ</p><div id="answer-cards" style="display:grid;gap:10px;margin-top:18px">${answers.map((a,i)=>`<div style="padding:13px;border-radius:13px;background:${a.correct?'#e6f6ee':'#fff0e7'};text-align:left"><b>ข้อ ${i+1} · ${a.word}</b><small style="display:block;margin-top:5px">${a.correct?'✅ ตอบถูก':'❌ ตอบผิด'}</small><span style="display:block;margin-top:4px;font-size:12px">คำตอบของคุณ: ${a.selected}</span>${a.correct?'':'<span style="display:block;margin-top:3px;font-size:12px;color:#bd725a">คำตอบที่ถูกต้อง: '+a.correctAnswer+'</span>'}</div>`).join('')}</div><div class="actions"><span>+${score*10} XP · +${score*2} 🐟</span><a class="primary" href="index.html">กลับหน้าหลัก →</a></div>`}word();const next=card.querySelector('.primary'),back=card.querySelector('.secondary');back.onclick=()=>{if(index>0){index--;word()}};next.onclick=()=>{if(index<4){index++;saved.word=index;saved.xp+=6;persist();word();toast('เก่งมาก! +6 XP ✨')}else{saved.completed=true;saved.word=0;persist();quiz()}}})();
+(async function () {
+  const card = document.querySelector('.word-card');
+  if (!card) return;
+
+  const escape = (value) => String(value).replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
+  const toast = (message) => {
+    let element = document.querySelector('.toast');
+    if (!element) {
+      element = document.createElement('div');
+      element.className = 'toast';
+      document.body.append(element);
+    }
+    element.textContent = message;
+    element.classList.add('show');
+    window.setTimeout(() => element.classList.remove('show'), 1800);
+  };
+  const shuffle = (items) => [...items].sort(() => Math.random() - 0.5);
+
+  const TEACHER_QUOTES = {
+    'daily-life': { quote: 'ทุกคำใหม่คือก้าวเล็ก ๆ ของนักผจญภัยนะ!' },
+    'restaurant': { quote: 'คำศัพท์อร่อย ๆ รอเราอยู่ในเมนูวันนี้!' },
+    'travel': { quote: 'เตรียมกระเป๋าให้พร้อม แล้วออกเดินทางไปกับคำศัพท์กัน!' },
+    'medical': { quote: 'ดูแลสุขภาพไปพร้อมกับคำศัพท์ใหม่ ๆ ทุกวันนะ!' },
+    'law-citizenship': { quote: 'เรียนรู้กฎอย่างเป็นธรรม แล้วเราจะอยู่ร่วมกันได้อย่างสงบสุข' },
+    'science': { quote: 'ทุกคำถามคือจุดเริ่มต้นของการค้นพบ!' }
+  };
+
+  try {
+    card.innerHTML = '<p class="pronounce">กำลังเตรียมบทเรียนของวันนี้…</p>';
+    const content = await window.CatWordsContent.load();
+    const lesson = window.CatWordsContent.pickLesson(content);
+    const words = lesson.wordIds.map((id) => content.words.find((word) => word.id === id));
+    const quizzes = lesson.quizIds.map((id) => content.quizzes.find((quiz) => quiz.id === id));
+    if (words.length !== 5 || words.some(Boolean) === false || quizzes.length !== 5 || quizzes.some(Boolean) === false) {
+      throw new Error('Today\'s lesson is not ready.');
+    }
+
+    // Coach panel: show today's teacher (fall back to Mochi).
+    const coachImg = document.querySelector('.coach img');
+    const coachPill = document.querySelector('.coach .pill');
+    const coachQuote = document.querySelector('.coach h3');
+    const coachList = document.querySelector('.word-list');
+    const teacher = (window.CatWordsCharacters && window.CatWordsCharacters.get(lesson.teacher)) || window.CatWordsCharacters.get('mochi');
+    const quote = TEACHER_QUOTES[lesson.category] || TEACHER_QUOTES['daily-life'];
+    if (coachImg) coachImg.src = teacher.pose;
+    if (coachImg) coachImg.alt = `${teacher.name} ให้กำลังใจ`;
+    if (coachPill) coachPill.textContent = `${teacher.name.toUpperCase()} SAYS`;
+    if (coachQuote) coachQuote.textContent = `“${quote.quote}”`;
+    if (coachList) {
+      coachList.innerHTML = words
+        .map((word, index) => `<div data-word-index="${index}"><b>${index + 1}</b> ${escape(word.word)}</div>`)
+        .join('');
+    }
+
+    const markCurrentWord = (index) => {
+      if (!coachList) return;
+      coachList.querySelectorAll('[data-word-index]').forEach((item) => {
+        item.classList.toggle('current', Number(item.dataset.wordIndex) === index);
+      });
+    };
+
+    const applyVoicePreference = () => {
+      const settings = window.CatWordsSettings ? window.CatWordsSettings.read() : null;
+      if (!settings || settings.voice === 'auto') return;
+      const button = card.querySelector(`.sound[data-lang="${settings.voice}"]`);
+      if (button) button.classList.add('selected');
+    };
+
+    let index = Math.min(window.CatWordsProgress.read().word, words.length - 1);
+
+    const renderWord = () => {
+      const word = words[index];
+      const state = window.CatWordsProgress.read();
+      card.innerHTML = `<div class="progress-row"><span>คำที่ ${index + 1} จาก 5</span><div class="bar"><span style="width:${((index + 1) / words.length) * 100}%"></span></div></div><div class="word-icon">🌱</div><h2>${escape(word.word)}</h2><p class="pronounce">${escape(word.phonetic)} <span class="sound-group"><button class="sound" data-lang="en-US">🇺🇸 US</button><button class="sound" data-lang="en-UK">🇬🇧 UK</button></span></p><span class="tag">${escape(word.partOfSpeech.toUpperCase())} · คำ${word.partOfSpeech === 'verb' ? 'กริยา' : word.partOfSpeech === 'noun' ? 'นาม' : 'คุณศัพท์'}</span><div class="info"><small>ความหมาย</small><p>${escape(word.thaiMeaning)}</p></div><div class="info example"><small>ตัวอย่างประโยค</small><p>“${escape(word.exampleSentence)}”</p><span>${escape(word.exampleThai)}</span></div><div class="actions"><button class="secondary" ${index === 0 ? 'disabled' : ''}>← ย้อนกลับ</button><button class="primary">${index === words.length - 1 ? 'เริ่ม Daily Quiz →' : 'เข้าใจแล้ว →'}</button></div>`;
+
+      card.querySelector('.secondary').onclick = () => {
+        if (index > 0) {
+          index -= 1;
+          renderWord();
+        }
+      };
+      card.querySelector('.primary').onclick = () => {
+        const result = window.CatWordsProgress.recordWord(index);
+        if (result.changed) toast(`เก่งมาก! +${result.earnedXP} XP ✨`);
+        if (index < words.length - 1) {
+          index += 1;
+          renderWord();
+        } else {
+          renderQuiz();
+        }
+      };
+
+      markCurrentWord(index);
+      applyVoicePreference();
+
+      if (state.lessonCompleted && !state.quizCompleted && index === words.length - 1) {
+        card.querySelector('.primary').textContent = 'เริ่ม Daily Quiz →';
+      }
+    };
+
+    const renderQuiz = () => {
+      if (coachList) coachList.querySelectorAll('[data-word-index]').forEach((item) => item.classList.remove('current'));
+      let questionIndex = 0;
+      let score = 0;
+      const answers = [];
+      card.innerHTML = '<div class="progress-row"><span>Quiz ข้อ 1 จาก 5</span><div class="bar"><span style="width:20%"></span></div></div><div class="word-icon">🧠</div><h2 style="font-family:var(--font-sans)">Daily Quiz</h2><p class="pronounce" style="font-family:var(--font-sans)">ทบทวนคำศัพท์วันนี้ไปพร้อมกับ Mochi</p><div class="info"><small id="quiz-question"></small><div id="quiz-options"></div></div><div class="actions"><button class="secondary" id="quiz-back">← กลับไปทบทวน</button><button class="primary" id="quiz-next" disabled>เลือกคำตอบก่อน</button></div>';
+      const question = card.querySelector('#quiz-question');
+      const options = card.querySelector('#quiz-options');
+      const next = card.querySelector('#quiz-next');
+
+      const paintQuestion = () => {
+        const quiz = quizzes[questionIndex];
+        question.textContent = quiz.question;
+        options.innerHTML = shuffle([quiz.correctAnswer, ...quiz.options.filter((option) => option !== quiz.correctAnswer).slice(0, 2)])
+          .map((option) => `<button class="quiz-option" type="button" data-answer="${escape(option)}">${escape(option)}</button>`)
+          .join('');
+        next.disabled = true;
+        next.textContent = questionIndex === quizzes.length - 1 ? 'ดูผลลัพธ์' : 'ข้อต่อไป →';
+        options.querySelectorAll('button').forEach((button) => {
+          button.onclick = () => {
+            options.querySelectorAll('button').forEach((item) => { item.disabled = true; });
+            const correct = button.dataset.answer === quiz.correctAnswer;
+            answers[questionIndex] = { word: words[questionIndex].word, selected: button.dataset.answer, correctAnswer: quiz.correctAnswer, correct };
+            button.classList.add(correct ? 'correct' : 'wrong');
+            if (correct) {
+              score += 1;
+              toast('ถูกต้อง! ✨');
+            } else {
+              toast(`คำตอบคือ “${quiz.correctAnswer}”`);
+            }
+            next.disabled = false;
+          };
+        });
+      };
+
+      next.onclick = () => {
+        if (next.disabled) return;
+        if (questionIndex < quizzes.length - 1) {
+          questionIndex += 1;
+          card.querySelector('.progress-row span').textContent = `Quiz ข้อ ${questionIndex + 1} จาก 5`;
+          card.querySelector('.bar span').style.width = `${((questionIndex + 1) / quizzes.length) * 100}%`;
+          paintQuestion();
+        } else {
+          renderResult(answers, window.CatWordsProgress.submitQuiz(score));
+        }
+      };
+      card.querySelector('#quiz-back').onclick = () => {
+        index = words.length - 1;
+        renderWord();
+      };
+      paintQuestion();
+    };
+
+    const renderResult = (answers, reward) => {
+      const state = reward.state;
+      const answerCards = answers.length
+        ? answers.map((answer, answerIndex) => `<div class="answer-card ${answer.correct ? 'ok' : 'no'}"><b>ข้อ ${answerIndex + 1} · ${escape(answer.word)}</b><small>${answer.correct ? '✅ ตอบถูก' : '❌ ตอบผิด'}</small><span>คำตอบของคุณ: ${escape(answer.selected)}</span>${answer.correct ? '' : `<span class="correct-answer">คำตอบที่ถูกต้อง: ${escape(answer.correctAnswer)}</span>`}</div>`).join('')
+        : '<div class="answer-card ok"><b>ทำ Quiz วันนี้เรียบร้อยแล้ว 🎉</b><small>กลับมาเรียนคำใหม่พรุ่งนี้นะ</small></div>';
+      card.innerHTML = `<div class="word-icon">🏆</div><h2 style="font-family:var(--font-sans)">สรุปผล Daily Quiz</h2><p class="pronounce" style="font-family:var(--font-sans)">คุณตอบถูก ${state.quizScore} จาก 5 ข้อ</p><div id="answer-cards" style="display:grid;gap:10px;margin-top:18px">${answerCards}</div><div class="actions"><span>+${reward.earnedXP} XP · +${reward.earnedCoins} 🐟</span><a class="primary" href="index.html">กลับหน้าหลัก →</a></div>`;
+    };
+
+    const initialState = window.CatWordsProgress.read();
+    if (initialState.quizCompleted) renderResult([], { state: initialState, earnedXP: 0, earnedCoins: 0 });
+    else if (initialState.lessonCompleted) renderQuiz();
+    else renderWord();
+  } catch (error) {
+    card.innerHTML = '<div class="info"><small>ยังเปิดบทเรียนไม่ได้</small><p>ลองรีเฟรชอีกครั้งเมื่อการเชื่อมต่อพร้อมนะ</p></div>';
+  }
+})();

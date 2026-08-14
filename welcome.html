@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CatWords — ยินดีต้อนรับ</title>
+<script>try{if(JSON.parse(localStorage.getItem('catwords-settings')||'{}').theme==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="data/catwords.css">
+<style>
+  body { min-height:100vh; display:grid; place-items:center; padding:24px; }
+  .welcome { width:min(560px,100%); background:var(--surface-glass); border:1px solid rgba(255,255,255,.9); border-radius:28px; box-shadow:var(--shadow); padding:38px 34px; text-align:center; }
+  .welcome .mochi { width:150px; margin:0 auto 6px; display:block; }
+  .welcome .brand-row { display:flex; align-items:center; justify-content:center; gap:10px; color:var(--navy); margin-bottom:10px; }
+  .welcome .brand-row b { font:800 20px var(--font-display); }
+  .welcome .brand-row small { font-size:10px; color:var(--peach-text); letter-spacing:1px; display:block; }
+  .welcome h1 { font:700 27px var(--font-display); color:var(--navy); margin:6px 0 8px; }
+  .welcome > p { color:var(--muted); font-size:13px; margin:0 0 24px; }
+  .field { text-align:left; margin-bottom:22px; }
+  .field label { font-size:11px; font-weight:700; color:var(--muted); letter-spacing:.5px; display:block; margin-bottom:8px; }
+  .field input {
+    width:100%; padding:13px 15px; border:1.5px solid var(--line); border-radius:14px;
+    background:var(--surface); color:var(--ink); font-size:14px; outline:none; transition:.2s;
+  }
+  .field input:focus { border-color:var(--peach); }
+  .levels { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .level {
+    border:1.5px solid var(--line); border-radius:16px; padding:15px 10px; cursor:pointer;
+    background:var(--surface); text-align:center; transition:.2s;
+  }
+  .level:hover { border-color:var(--peach); transform:translateY(-2px); }
+  .level.selected { border-color:var(--mint); background:var(--mint-soft); }
+  .level .l-icon { font-size:24px; display:block; }
+  .level b { display:block; font:700 12px var(--font-display); margin-top:6px; }
+  .level small { display:block; font-size:9px; color:var(--muted); margin-top:4px; line-height:1.5; }
+  .start { width:100%; padding:14px; border-radius:15px; font-size:14px; margin-top:8px; }
+  .skip { display:block; margin-top:14px; color:var(--muted); font-size:12px; text-decoration:none; }
+  .skip:hover { color:var(--peach-deep); }
+  @media (max-width:480px) {
+    .welcome { padding:28px 20px; }
+    .levels { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<main class="welcome">
+  <img class="mochi" src="public/assets/characters/mochi/poses/mochi-wave.png" alt="Mochi โบกมือต้อนรับ">
+  <div class="brand-row"><span class="mark">🐾</span><span><b>CatWords</b><small>ACADEMY</small></span></div>
+  <h1>ยินดีต้อนรับสู่ Meowville! 🐱</h1>
+  <p>เรียนภาษาอังกฤษวันละ 5 คำ ไปกับแก๊งน้องแมวผู้เป็นครู<br>สนุก ไม่กดดัน และทำต่อเนื่องได้จริง</p>
+
+  <div class="field">
+    <label for="name">เรียกคุณว่าอะไรดี?</label>
+    <input id="name" type="text" maxlength="24" placeholder="เช่น น้องเหมียว" autocomplete="off">
+  </div>
+
+  <div class="field">
+    <label>เลือกระดับการเรียนเริ่มต้น</label>
+    <div class="levels" id="levels">
+      <button type="button" class="level selected" data-level="easy"><span class="l-icon">🌱</span><b>Easy</b><small>เริ่มต้นสบาย ๆ<br>คำศัพท์ใช้บ่อย</small></button>
+      <button type="button" class="level" data-level="intermediate"><span class="l-icon">🚀</span><b>Intermediate</b><small>ท้าทายขึ้นหน่อย<br>ประโยคยาวขึ้น</small></button>
+      <button type="button" class="level" data-level="advanced"><span class="l-icon">🏅</span><b>Advanced</b><small>เก่งแล้ว<br>มาลุยกันเลย</small></button>
+    </div>
+  </div>
+
+  <button class="cta start" id="start">เริ่มเรียนกับ Mochi →</button>
+  <a class="skip" href="index.html">ข้ามไปก่อน (เริ่มระดับ Easy)</a>
+</main>
+
+<script src="data/settings-store.js"></script>
+<script>
+  (function () {
+    let chosenLevel = 'easy';
+    document.querySelectorAll('#levels .level').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('#levels .level').forEach((item) => item.classList.remove('selected'));
+        button.classList.add('selected');
+        chosenLevel = button.dataset.level;
+      });
+    });
+    document.getElementById('start').addEventListener('click', () => {
+      const name = document.getElementById('name').value.trim() || 'คุณนักเรียน';
+      window.CatWordsSettings.update({ displayName: name, learningLevel: chosenLevel });
+      location.href = 'index.html';
+    });
+  })();
+</script>
+</body>
+</html>

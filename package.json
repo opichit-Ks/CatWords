@@ -5,6 +5,7 @@
 	},
 	"scripts": {
 		"buildCss": "tailwindcss -i ./src/input.css -o ./public/assets/tailwind.css --minify",
-		"devCss": "tailwindcss -i ./src/input.css -o ./public/assets/tailwind.css --watch"
+		"devCss": "tailwindcss -i ./src/input.css -o ./public/assets/tailwind.css --watch",
+		"serve": "node server.js"
 	}
 }

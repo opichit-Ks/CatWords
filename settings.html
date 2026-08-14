@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CatWords — ตั้งค่า</title>
+<script>try{if(JSON.parse(localStorage.getItem('catwords-settings')||'{}').theme==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="data/catwords.css">
+<style>
+  .settings-grid { display:grid; gap:16px; max-width:640px; }
+  .setting-row { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0; border-bottom:1px solid var(--line-2); }
+  .setting-row:last-child { border:0; }
+  .setting-row b { font-size:13px; display:block; }
+  .setting-row small { font-size:10px; color:var(--muted); }
+  .setting-row input[type="text"] {
+    width:220px; padding:10px 13px; border:1.5px solid var(--line); border-radius:12px;
+    background:var(--surface); color:var(--ink); font-size:13px; outline:none;
+  }
+  .setting-row input[type="text"]:focus { border-color:var(--peach); }
+  .setting-row select {
+    padding:10px 12px; border:1.5px solid var(--line); border-radius:12px;
+    background:var(--surface); color:var(--ink); font-size:13px; outline:none;
+  }
+  .seg { display:inline-flex; background:var(--surface-soft); border-radius:12px; padding:4px; gap:4px; }
+  .seg button { border:0; background:none; padding:8px 16px; border-radius:9px; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; }
+  .seg button.selected { background:var(--surface); color:var(--ink); box-shadow:var(--shadow); }
+  .pill-level { display:inline-flex; gap:6px; }
+  .pill-level button { border:1.5px solid var(--line); background:var(--surface); border-radius:12px; padding:8px 14px; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; }
+  .pill-level button.selected { border-color:var(--mint); color:var(--mint-text); background:var(--mint-soft); }
+  .danger button { background:var(--peach-soft); color:var(--peach-strong); border:1.5px solid var(--peach); }
+  .danger button:hover { filter:brightness(.97); }
+  .avatar-lg { width:64px; height:64px; border-radius:20px; font-size:34px; }
+  @media (max-width:560px) {
+    .setting-row { flex-direction:column; align-items:flex-start; gap:10px; }
+    .setting-row input[type="text"] { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="mark">🐾</span><span><b>CatWords</b><small>ACADEMY</small></span></a>
+    <nav class="nav">
+      <a data-page="index" href="index.html"><span>⌂</span>หน้าหลัก</a>
+      <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียนวันนี้</a>
+      <a data-page="progress" href="progress.html"><span>📈</span>ความก้าวหน้า</a>
+      <a data-page="collection" href="collection.html"><span>🎒</span>คอลเลกชัน</a>
+      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+    </nav>
+    <p class="side-note">🐱 Mochi รอเรียนกับคุณอยู่</p>
+  </aside>
+
+  <main class="content">
+    <header class="top">
+      <div class="profile">
+        <div class="avatar">🐼</div>
+        <div><b>คุณนักเรียน</b><small>Level 1 · Explorer</small></div>
+      </div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <span class="eyebrow" data-today>SETTINGS</span>
+        <h1>ตั้งค่า ⚙️</h1>
+        <p>ปรับแต่งประสบการณ์การเรียนของคุณ</p>
+      </div>
+    </section>
+
+    <div class="settings-grid">
+      <section class="panel">
+        <h2>โปรไฟล์</h2>
+        <div class="setting-row">
+          <div class="profile">
+            <div class="avatar avatar-lg">🐼</div>
+            <div><b id="profile-name">คุณนักเรียน</b><small id="profile-level">Level 1 · Explorer</small></div>
+          </div>
+          <input id="display-name" type="text" maxlength="24" aria-label="ชื่อที่แสดง">
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>การเรียน</h2>
+        <div class="setting-row">
+          <div><b>ระดับบทเรียน</b><small>ระบบจะจัดบทเรียนให้เข้ากับระดับของคุณ</small></div>
+          <div class="pill-level" id="level-pills">
+            <button type="button" data-level="easy">🌱 Easy</button>
+            <button type="button" data-level="intermediate">🚀 Intermediate</button>
+            <button type="button" data-level="advanced">🏅 Advanced</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div><b>เสียงเริ่มต้น</b><small>สำเนียงที่ใช้เมื่อเปิดบทเรียน</small></div>
+          <select id="voice" aria-label="เสียงเริ่มต้น">
+            <option value="auto">อัตโนมัติ</option>
+            <option value="en-US">🇺🇸 US</option>
+            <option value="en-UK">🇬🇧 UK</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>การแสดงผล</h2>
+        <div class="setting-row">
+          <div><b>ธีม</b><small>สลับโหมดสว่าง / มืด</small></div>
+          <div class="seg" id="theme-seg">
+            <button type="button" data-theme="light">☀️ สว่าง</button>
+            <button type="button" data-theme="dark">🌙 มืด</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel danger">
+        <h2>ข้อมูล</h2>
+        <div class="setting-row">
+          <div><b>รีเซ็ตความคืบหน้า</b><small>ล้าง XP, เหรียญ, สตรีค และสถานะการเรียน</small></div>
+          <button class="secondary" id="reset-progress" type="button">รีเซ็ต</button>
+        </div>
+        <div class="setting-row">
+          <div><b>รีเซ็ตทุกอย่าง</b><small>ล้างข้อมูลทั้งหมดและกลับสู่หน้าแรก</small></div>
+          <button class="secondary" id="reset-all" type="button">รีเซ็ตทั้งหมด</button>
+        </div>
+      </section>
+    </div>
+
+    <nav class="bottom">
+      <a data-page="index" href="index.html"><span>⌂</span>หน้าหลัก</a>
+      <a data-page="daily-lesson" href="daily-lesson.html"><span>☷</span>เรียน</a>
+      <a data-page="progress" href="progress.html"><span>▣</span>ความก้าวหน้า</a>
+      <a data-page="collection" href="collection.html"><span>♙</span>คอลเลกชัน</a>
+    </nav>
+  </main>
+</div>
+<script src="data/settings-store.js"></script>
+<script src="data/progress-store.js"></script>
+<script src="data/app-shell.js"></script>
+<script>
+  (function () {
+    if (!window.CatWordsSettings) return;
+    const settings = window.CatWordsSettings.read();
+    const toast = (message) => {
+      let element = document.querySelector('.toast');
+      if (!element) { element = document.createElement('div'); element.className = 'toast'; document.body.append(element); }
+      element.textContent = message;
+      element.classList.add('show');
+      window.setTimeout(() => element.classList.remove('show'), 1800);
+    };
+    const saved = (message) => { toast(message || 'บันทึกแล้ว ✨'); };
+
+    // Load current values
+    const nameInput = document.getElementById('display-name');
+    nameInput.value = settings.displayName;
+    document.getElementById('voice').value = settings.voice;
+    document.querySelectorAll('#level-pills button').forEach((button) => {
+      button.classList.toggle('selected', button.dataset.level === settings.learningLevel);
+    });
+    document.querySelectorAll('#theme-seg button').forEach((button) => {
+      button.classList.toggle('selected', button.dataset.theme === settings.theme);
+    });
+
+    // Display name
+    nameInput.addEventListener('change', () => {
+      const name = nameInput.value.trim() || 'คุณนักเรียน';
+      window.CatWordsSettings.update({ displayName: name });
+      nameInput.value = name;
+      document.querySelectorAll('.profile b').forEach((element) => { element.textContent = name; });
+      saved();
+    });
+
+    // Learning level
+    document.querySelectorAll('#level-pills button').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('#level-pills button').forEach((item) => item.classList.remove('selected'));
+        button.classList.add('selected');
+        window.CatWordsSettings.update({ learningLevel: button.dataset.level });
+        saved('บันทึกระดับแล้ว 🌱');
+      });
+    });
+
+    // Theme
+    document.querySelectorAll('#theme-seg button').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('#theme-seg button').forEach((item) => item.classList.remove('selected'));
+        button.classList.add('selected');
+        window.CatWordsSettings.update({ theme: button.dataset.theme });
+        saved(button.dataset.theme === 'dark' ? 'สลับเป็นโหมดมืดแล้ว 🌙' : 'สลับเป็นโหมดสว่างแล้ว ☀️');
+      });
+    });
+
+    // Voice
+    document.getElementById('voice').addEventListener('change', (event) => {
+      window.CatWordsSettings.update({ voice: event.target.value });
+      saved('บันทึกเสียงแล้ว 🎙️');
+    });
+
+    // Reset progress
+    document.getElementById('reset-progress').addEventListener('click', () => {
+      if (!window.confirm('ล้างความคืบหน้าทั้งหมด? การกระทำนี้ไม่สามารถย้อนกลับได้')) return;
+      localStorage.removeItem('catwords-mvp-progress');
+      saved('รีเซ็ตความคืบหน้าแล้ว');
+      window.setTimeout(() => location.reload(), 700);
+    });
+
+    // Reset everything
+    document.getElementById('reset-all').addEventListener('click', () => {
+      if (!window.confirm('ล้างข้อมูลทั้งหมดและเริ่มต้นใหม่?')) return;
+      window.CatWordsSettings.reset();
+      localStorage.removeItem('catwords-mvp-progress');
+      localStorage.removeItem('catwords-progress');
+      location.href = 'welcome.html';
+    });
+  })();
+</script>
+<script src="data/back-to-top.js"></script>
+</body>
+</html>

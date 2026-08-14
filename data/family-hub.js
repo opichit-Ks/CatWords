@@ -1,1 +1,51 @@
-(function(){const state=JSON.parse(localStorage.getItem('catwords-mvp-progress')||'{"xp":0}'),level=Math.max(1,Math.floor((state.xp||0)/30)+1),cats=document.querySelectorAll('.cats .cat'),names=['Mochi','Doctor Paws','Loffy','Chef Momo','Pixel','Captain Whiskers','Professor Ink','Nova'],poses=['mochi-holding-book.png','mochi-point-board.png','mochi-holding-fish-coin.png','mochi-celebrate.png'];cats.forEach((cat,i)=>{const unlock=level>=i+1;cat.classList.toggle('locked',!unlock);if(i===0){const a=cat.querySelector('.cat-avatar');a.innerHTML='<img src="public/assets/characters/mochi/poses/mochi-holding-book.png" alt="Mochi" style="width:75px;height:82px;object-fit:contain">';a.style.background='#e6f6ee'}if(unlock)cat.addEventListener('click',()=>{document.querySelector('.family-detail')?.remove();const d=document.createElement('section');d.className='panel family-detail';d.style.cssText='display:flex;align-items:center;gap:18px;margin-top:18px';d.innerHTML=`<img src="public/assets/characters/mochi/poses/${poses[i%poses.length]}" alt="${names[i]}" style="width:110px;height:130px;object-fit:contain"><div><h2 style="margin:0 0 6px">${names[i]}</h2><p class="muted">${cat.querySelector('small')?.textContent||''}</p><a class="cta" href="daily-lesson.html">เริ่มบทเรียน →</a></div>`;cat.parentElement.parentElement.after(d);d.scrollIntoView({behavior:'smooth',block:'center'})})});const t=document.querySelector('.intro h1');if(t){const n=document.createElement('p');n.className='muted';n.textContent=`Level ${level} · เลือกตัวละครเพื่อดูรายละเอียด`;t.parentElement.append(n)}})();
+(function () {
+  const container = document.querySelector('#cats');
+  const detail = document.querySelector('#family-detail');
+  if (!container || !window.CatWordsCharacters || !window.CatWordsProgress) return;
+
+  const progress = window.CatWordsProgress.read();
+  const level = window.CatWordsProgress.levelFor(progress.xp);
+  const characters = window.CatWordsCharacters.list();
+
+  const render = () => {
+    container.innerHTML = characters.map((character) => {
+      const unlocked = level >= character.unlockLevel;
+      return `<div class="cat ${unlocked ? '' : 'locked'}" data-slug="${character.slug}" role="button" tabindex="${unlocked ? '0' : '-1'}" aria-label="${character.name}${unlocked ? '' : ' ยังไม่ปลดล็อก'}">
+        <span class="cat-avatar">${unlocked ? `<img src="${character.portrait}" alt="${character.name}">` : `<span>${character.emoji}</span>`}</span>
+        <b>${character.name}</b>
+        <small>${character.role}</small>
+        <em>${unlocked ? 'พร้อมสอน' : `🔒 Level ${character.unlockLevel}`}</em>
+      </div>`;
+    }).join('');
+
+    container.querySelectorAll('.cat').forEach((cat) => {
+      const character = window.CatWordsCharacters.get(cat.dataset.slug);
+      const unlocked = level >= character.unlockLevel;
+      const showDetail = () => {
+        if (!unlocked) return;
+        detail.innerHTML = `<section class="panel family-detail">
+          <div class="fd-image"><img src="${character.portrait}" alt="${character.name}"></div>
+          <div>
+            <span class="role">${character.role.toUpperCase()}</span>
+            <h2>${character.name}</h2>
+            <p>${character.bio}</p>
+            <div class="fd-actions">
+              <a class="cta" href="daily-lesson.html">เริ่มบทเรียน →</a>
+              <span class="fav">${character.favorite}</span>
+            </div>
+          </div>
+        </section>`;
+        detail.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      };
+      cat.addEventListener('click', showDetail);
+      cat.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          showDetail();
+        }
+      });
+    });
+  };
+
+  render();
+})();

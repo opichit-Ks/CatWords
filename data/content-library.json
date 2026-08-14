@@ -1,25 +1,133 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "words": [
     {"id":"daily-thrive-001","word":"thrive","phonetic":"/θraɪv/","partOfSpeech":"verb","thaiMeaning":"เติบโตได้ดี, รุ่งเรือง","exampleSentence":"Plants thrive when they get enough sunlight.","exampleThai":"ต้นไม้เติบโตได้ดีเมื่อได้รับแสงแดดเพียงพอ","level":"easy","category":"daily-life","status":"approved","source":"seed"},
     {"id":"daily-curious-001","word":"curious","phonetic":"/ˈkjʊəriəs/","partOfSpeech":"adjective","thaiMeaning":"อยากรู้อยากเห็น, ช่างสงสัย","exampleSentence":"Curious minds ask thoughtful questions.","exampleThai":"คนช่างสงสัยมักถามคำถามที่น่าสนใจ","level":"easy","category":"daily-life","status":"approved","source":"seed"},
     {"id":"daily-gentle-001","word":"gentle","phonetic":"/ˈdʒentl/","partOfSpeech":"adjective","thaiMeaning":"อ่อนโยน, นุ่มนวล","exampleSentence":"Please be gentle with the little kitten.","exampleThai":"โปรดอ่อนโยนกับลูกแมวตัวน้อย","level":"easy","category":"daily-life","status":"approved","source":"seed"},
     {"id":"daily-journey-001","word":"journey","phonetic":"/ˈdʒɜːrni/","partOfSpeech":"noun","thaiMeaning":"การเดินทาง, เส้นทาง","exampleSentence":"Learning a language is a rewarding journey.","exampleThai":"การเรียนภาษาคือเส้นทางที่คุ้มค่า","level":"easy","category":"daily-life","status":"approved","source":"seed"},
     {"id":"daily-discover-001","word":"discover","phonetic":"/dɪˈskʌvər/","partOfSpeech":"verb","thaiMeaning":"ค้นพบ, พบสิ่งใหม่","exampleSentence":"Every lesson helps you discover something new.","exampleThai":"ทุกบทเรียนช่วยให้คุณค้นพบสิ่งใหม่","level":"easy","category":"daily-life","status":"approved","source":"seed"},
-    {"id":"food-flavor-001","word":"flavor","phonetic":"/ˈfleɪvər/","partOfSpeech":"noun","thaiMeaning":"รสชาติ","exampleSentence":"This soup has a rich flavor.","exampleThai":"ซุปนี้มีรสชาติเข้มข้น","level":"easy","category":"restaurant","status":"approved","source":"seed"},
+
+    {"id":"restaurant-menu-001","word":"menu","phonetic":"/ˈmenjuː/","partOfSpeech":"noun","thaiMeaning":"เมนู, รายการอาหาร","exampleSentence":"May I see the menu, please?","exampleThai":"ขอดูเมนูหน่อยได้ไหมครับ","level":"easy","category":"restaurant","status":"approved","source":"seed"},
+    {"id":"restaurant-delicious-001","word":"delicious","phonetic":"/dɪˈlɪʃəs/","partOfSpeech":"adjective","thaiMeaning":"อร่อย, เอร็ดอร่อย","exampleSentence":"This soup is absolutely delicious.","exampleThai":"ซุปนี้อร่อยมากจริง ๆ","level":"easy","category":"restaurant","status":"approved","source":"seed"},
+    {"id":"restaurant-waiter-001","word":"waiter","phonetic":"/ˈweɪtər/","partOfSpeech":"noun","thaiMeaning":"พนักงานเสิร์ฟ","exampleSentence":"The waiter brought our drinks quickly.","exampleThai":"พนักงานเสิร์ฟนำเครื่องดื่มมาให้เราอย่างรวดเร็ว","level":"easy","category":"restaurant","status":"approved","source":"seed"},
+    {"id":"restaurant-order-001","word":"order","phonetic":"/ˈɔːrdər/","partOfSpeech":"verb","thaiMeaning":"สั่งอาหาร, สั่งซื้อ","exampleSentence":"Let's order two bowls of noodles.","exampleThai":"เราสั่งบะหมี่สองชามกันเถอะ","level":"easy","category":"restaurant","status":"approved","source":"seed"},
+    {"id":"restaurant-taste-001","word":"taste","phonetic":"/teɪst/","partOfSpeech":"verb","thaiMeaning":"ชิม, ลองรสชาติ","exampleSentence":"Would you like to taste this curry?","exampleThai":"คุณอยากชิมแกงจานนี้ไหม","level":"easy","category":"restaurant","status":"approved","source":"seed"},
+
     {"id":"travel-arrive-001","word":"arrive","phonetic":"/əˈraɪv/","partOfSpeech":"verb","thaiMeaning":"มาถึง","exampleSentence":"We arrive at the airport early.","exampleThai":"พวกเรามาถึงสนามบินแต่เช้า","level":"easy","category":"travel","status":"approved","source":"seed"},
+    {"id":"travel-passport-001","word":"passport","phonetic":"/ˈpæspɔːrt/","partOfSpeech":"noun","thaiMeaning":"หนังสือเดินทาง","exampleSentence":"Don't forget your passport at the airport.","exampleThai":"อย่าลืมหนังสือเดินทางของคุณที่สนามบิน","level":"easy","category":"travel","status":"approved","source":"seed"},
+    {"id":"travel-luggage-001","word":"luggage","phonetic":"/ˈlʌɡɪdʒ/","partOfSpeech":"noun","thaiMeaning":"กระเป๋าเดินทาง, สัมภาระ","exampleSentence":"Where can I collect my luggage?","exampleThai":"ฉันจะไปรับกระเป๋าเดินทางได้ที่ไหน","level":"easy","category":"travel","status":"approved","source":"seed"},
+    {"id":"travel-depart-001","word":"depart","phonetic":"/dɪˈpɑːrt/","partOfSpeech":"verb","thaiMeaning":"ออกเดินทาง, ออกบิน","exampleSentence":"The flight departs at six in the morning.","exampleThai":"เที่ยวบินออกเดินทางตอนหกโมงเช้า","level":"intermediate","category":"travel","status":"approved","source":"seed"},
+    {"id":"travel-destination-001","word":"destination","phonetic":"/ˌdestɪˈneɪʃən/","partOfSpeech":"noun","thaiMeaning":"จุดหมายปลายทาง","exampleSentence":"Our final destination is Bangkok.","exampleThai":"จุดหมายปลายทางสุดท้ายของเราคือกรุงเทพฯ","level":"intermediate","category":"travel","status":"approved","source":"seed"},
+
     {"id":"health-recover-001","word":"recover","phonetic":"/rɪˈkʌvər/","partOfSpeech":"verb","thaiMeaning":"ฟื้นตัว, หายป่วย","exampleSentence":"She needs time to recover.","exampleThai":"เธอต้องใช้เวลาเพื่อฟื้นตัว","level":"intermediate","category":"medical","status":"approved","source":"seed"},
+    {"id":"health-symptom-001","word":"symptom","phonetic":"/ˈsɪmptəm/","partOfSpeech":"noun","thaiMeaning":"อาการ, สัญญาณของโรค","exampleSentence":"A sore throat is a common symptom of a cold.","exampleThai":"เจ็บคอเป็นอาการที่พบบ่อยของไข้หวัด","level":"intermediate","category":"medical","status":"approved","source":"seed"},
+    {"id":"health-medicine-001","word":"medicine","phonetic":"/ˈmedɪsɪn/","partOfSpeech":"noun","thaiMeaning":"ยา, เวชภัณฑ์","exampleSentence":"Take this medicine after breakfast.","exampleThai":"รับประทานยานี้หลังอาหารเช้า","level":"easy","category":"medical","status":"approved","source":"seed"},
+    {"id":"health-checkup-001","word":"checkup","phonetic":"/ˈtʃekʌp/","partOfSpeech":"noun","thaiMeaning":"การตรวจร่างกาย","exampleSentence":"You should have a checkup once a year.","exampleThai":"คุณควรตรวจร่างกายปีละครั้ง","level":"intermediate","category":"medical","status":"approved","source":"seed"},
+    {"id":"health-healthy-001","word":"healthy","phonetic":"/ˈhelθi/","partOfSpeech":"adjective","thaiMeaning":"แข็งแรง, สุขภาพดี","exampleSentence":"Sleeping well keeps you healthy.","exampleThai":"การนอนหลับเพียงพอทำให้คุณแข็งแรง","level":"easy","category":"medical","status":"approved","source":"seed"},
+
     {"id":"law-right-001","word":"right","phonetic":"/raɪt/","partOfSpeech":"noun","thaiMeaning":"สิทธิ","exampleSentence":"Everyone has the right to be heard.","exampleThai":"ทุกคนมีสิทธิที่จะได้รับการรับฟัง","level":"easy","category":"law-citizenship","status":"approved","source":"seed"},
-    {"id":"science-observe-001","word":"observe","phonetic":"/əbˈzɜːrv/","partOfSpeech":"verb","thaiMeaning":"สังเกต","exampleSentence":"Scientists observe changes carefully.","exampleThai":"นักวิทยาศาสตร์สังเกตการเปลี่ยนแปลงอย่างรอบคอบ","level":"intermediate","category":"science","status":"approved","source":"seed"}
+    {"id":"law-law-001","word":"law","phonetic":"/lɔː/","partOfSpeech":"noun","thaiMeaning":"กฎหมาย","exampleSentence":"Everyone must obey the law.","exampleThai":"ทุกคนต้องปฏิบัติตามกฎหมาย","level":"easy","category":"law-citizenship","status":"approved","source":"seed"},
+    {"id":"law-fair-001","word":"fair","phonetic":"/fer/","partOfSpeech":"adjective","thaiMeaning":"ยุติธรรม, เป็นธรรม","exampleSentence":"The referee made a fair decision.","exampleThai":"กรรมการตัดสินอย่างยุติธรรม","level":"easy","category":"law-citizenship","status":"approved","source":"seed"},
+    {"id":"law-rule-001","word":"rule","phonetic":"/ruːl/","partOfSpeech":"noun","thaiMeaning":"กฎ, ข้อบังคับ","exampleSentence":"Please follow the classroom rules.","exampleThai":"กรุณาปฏิบัติตามกฎของห้องเรียน","level":"easy","category":"law-citizenship","status":"approved","source":"seed"},
+    {"id":"law-citizen-001","word":"citizen","phonetic":"/ˈsɪtɪzən/","partOfSpeech":"noun","thaiMeaning":"พลเมือง","exampleSentence":"Every citizen has rights and duties.","exampleThai":"พลเมืองทุกคนมีสิทธิและหน้าที่","level":"intermediate","category":"law-citizenship","status":"approved","source":"seed"},
+
+    {"id":"science-observe-001","word":"observe","phonetic":"/əbˈzɜːrv/","partOfSpeech":"verb","thaiMeaning":"สังเกต","exampleSentence":"Scientists observe changes carefully.","exampleThai":"นักวิทยาศาสตร์สังเกตการเปลี่ยนแปลงอย่างรอบคอบ","level":"intermediate","category":"science","status":"approved","source":"seed"},
+    {"id":"science-research-001","word":"research","phonetic":"/ˈriːsɜːrtʃ/","partOfSpeech":"noun","thaiMeaning":"งานวิจัย, การค้นคว้า","exampleSentence":"Scientists do research to find answers.","exampleThai":"นักวิทยาศาสตร์ทำการวิจัยเพื่อหาคำตอบ","level":"intermediate","category":"science","status":"approved","source":"seed"},
+    {"id":"science-experiment-001","word":"experiment","phonetic":"/ɪkˈsperɪmənt/","partOfSpeech":"noun","thaiMeaning":"การทดลอง","exampleSentence":"We did a fun experiment in science class.","exampleThai":"เราทำการทดลองสนุก ๆ ในวิชาวิทยาศาสตร์","level":"intermediate","category":"science","status":"approved","source":"seed"},
+    {"id":"science-energy-001","word":"energy","phonetic":"/ˈenərdʒi/","partOfSpeech":"noun","thaiMeaning":"พลังงาน","exampleSentence":"Solar panels turn sunlight into energy.","exampleThai":"แผงโซลาร์เซลล์เปลี่ยนแสงอาทิตย์เป็นพลังงาน","level":"intermediate","category":"science","status":"approved","source":"seed"},
+    {"id":"science-planet-001","word":"planet","phonetic":"/ˈplænɪt/","partOfSpeech":"noun","thaiMeaning":"ดาวเคราะห์","exampleSentence":"Earth is the planet we call home.","exampleThai":"โลกคือดาวเคราะห์ที่เราเรียกว่าบ้าน","level":"easy","category":"science","status":"approved","source":"seed"}
   ],
   "quizzes": [
     {"id":"quiz-thrive-001","type":"multiple-choice","vocabularyIds":["daily-thrive-001"],"question":"What does “thrive” mean?","options":["เติบโตได้ดี, รุ่งเรือง","หยุดพัก","เดินทาง","ลืม"],"correctAnswer":"เติบโตได้ดี, รุ่งเรือง","explanation":"Thrive means to grow or develop well.","status":"approved"},
     {"id":"quiz-curious-001","type":"multiple-choice","vocabularyIds":["daily-curious-001"],"question":"What does “curious” describe?","options":["อยากรู้อยากเห็น","เหนื่อยมาก","เงียบสงบ","รวดเร็ว"],"correctAnswer":"อยากรู้อยากเห็น","explanation":"Curious describes someone who wants to know more.","status":"approved"},
     {"id":"quiz-gentle-001","type":"multiple-choice","vocabularyIds":["daily-gentle-001"],"question":"Choose the meaning of “gentle”.","options":["อ่อนโยน, นุ่มนวล","แข็งแรงมาก","หิว","เสียงดัง"],"correctAnswer":"อ่อนโยน, นุ่มนวล","explanation":"Gentle means kind, soft, and not rough.","status":"approved"},
     {"id":"quiz-journey-001","type":"multiple-choice","vocabularyIds":["daily-journey-001"],"question":"A “journey” is a…","options":["การเดินทาง, เส้นทาง","อาหาร","การประชุม","ความฝัน"],"correctAnswer":"การเดินทาง, เส้นทาง","explanation":"A journey is travel from one place to another.","status":"approved"},
-    {"id":"quiz-discover-001","type":"multiple-choice","vocabularyIds":["daily-discover-001"],"question":"What does “discover” mean?","options":["ค้นพบ, พบสิ่งใหม่","ซ่อน","ทำอาหาร","นอนหลับ"],"correctAnswer":"ค้นพบ, พบสิ่งใหม่","explanation":"Discover means to find something for the first time.","status":"approved"}
+    {"id":"quiz-discover-001","type":"multiple-choice","vocabularyIds":["daily-discover-001"],"question":"What does “discover” mean?","options":["ค้นพบ, พบสิ่งใหม่","ซ่อน","ทำอาหาร","นอนหลับ"],"correctAnswer":"ค้นพบ, พบสิ่งใหม่","explanation":"Discover means to find something for the first time.","status":"approved"},
+
+    {"id":"quiz-menu-001","type":"multiple-choice","vocabularyIds":["restaurant-menu-001"],"question":"What is a “menu”?","options":["เมนู, รายการอาหาร","โต๊ะอาหาร","ห้องครัว","บิลค่าใช้จ่าย"],"correctAnswer":"เมนู, รายการอาหาร","explanation":"A menu lists the food and drinks a restaurant offers.","status":"approved"},
+    {"id":"quiz-delicious-001","type":"multiple-choice","vocabularyIds":["restaurant-delicious-001"],"question":"Choose the meaning of “delicious”.","options":["อร่อย, เอร็ดอร่อย","จืดชืด","เผ็ดเกินไป","เค็มมาก"],"correctAnswer":"อร่อย, เอร็ดอร่อย","explanation":"Delicious means very tasty.","status":"approved"},
+    {"id":"quiz-waiter-001","type":"multiple-choice","vocabularyIds":["restaurant-waiter-001"],"question":"What does “waiter” mean?","options":["พนักงานเสิร์ฟ","พ่อครัว","แคชเชียร์","คนขับรถ"],"correctAnswer":"พนักงานเสิร์ฟ","explanation":"A waiter serves food and drinks in a restaurant.","status":"approved"},
+    {"id":"quiz-order-001","type":"multiple-choice","vocabularyIds":["restaurant-order-001"],"question":"What does “order” mean?","options":["สั่งอาหาร, สั่งซื้อ","ขับรถ","นอนหลับ","ร้องเพลง"],"correctAnswer":"สั่งอาหาร, สั่งซื้อ","explanation":"To order means to ask for food or goods.","status":"approved"},
+    {"id":"quiz-taste-001","type":"multiple-choice","vocabularyIds":["restaurant-taste-001"],"question":"What does “taste” mean?","options":["ชิม, ลองรสชาติ","ทำความสะอาด","ตกแต่งบ้าน","จ่ายเงิน"],"correctAnswer":"ชิม, ลองรสชาติ","explanation":"To taste means to try a small amount of food or drink.","status":"approved"},
+
+    {"id":"quiz-arrive-001","type":"multiple-choice","vocabularyIds":["travel-arrive-001"],"question":"What does “arrive” mean?","options":["มาถึง","ออกเดินทาง","หลงทาง","รอคอย"],"correctAnswer":"มาถึง","explanation":"Arrive means to reach a place.","status":"approved"},
+    {"id":"quiz-passport-001","type":"multiple-choice","vocabularyIds":["travel-passport-001"],"question":"What does “passport” mean?","options":["หนังสือเดินทาง","ตั๋วเครื่องบิน","กระเป๋าเงิน","ใบขับขี่"],"correctAnswer":"หนังสือเดินทาง","explanation":"A passport is the document you need to travel abroad.","status":"approved"},
+    {"id":"quiz-luggage-001","type":"multiple-choice","vocabularyIds":["travel-luggage-001"],"question":"What does “luggage” mean?","options":["กระเป๋าเดินทาง, สัมภาระ","แผนที่","อาหารว่าง","ที่นั่ง"],"correctAnswer":"กระเป๋าเดินทาง, สัมภาระ","explanation":"Luggage is the bags you carry when you travel.","status":"approved"},
+    {"id":"quiz-depart-001","type":"multiple-choice","vocabularyIds":["travel-depart-001"],"question":"What does “depart” mean?","options":["ออกเดินทาง, ออกบิน","จอดรถ","ขึ้นบันได","ลงเรือ"],"correctAnswer":"ออกเดินทาง, ออกบิน","explanation":"To depart means to leave, especially on a journey or flight.","status":"approved"},
+    {"id":"quiz-destination-001","type":"multiple-choice","vocabularyIds":["travel-destination-001"],"question":"A “destination” is your…","options":["จุดหมายปลายทาง","จุดเริ่มต้น","ห้องนอน","ที่จอดรถ"],"correctAnswer":"จุดหมายปลายทาง","explanation":"A destination is the place you are travelling to.","status":"approved"},
+
+    {"id":"quiz-recover-001","type":"multiple-choice","vocabularyIds":["health-recover-001"],"question":"What does “recover” mean?","options":["ฟื้นตัว, หายป่วย","เจ็บป่วย","หมดแรง","ล้มลง"],"correctAnswer":"ฟื้นตัว, หายป่วย","explanation":"To recover means to get better after being ill.","status":"approved"},
+    {"id":"quiz-symptom-001","type":"multiple-choice","vocabularyIds":["health-symptom-001"],"question":"What does “symptom” mean?","options":["อาการ, สัญญาณของโรค","ยารักษา","โรงพยาบาล","การตรวจเลือด"],"correctAnswer":"อาการ, สัญญาณของโรค","explanation":"A symptom is a sign that shows you may be ill.","status":"approved"},
+    {"id":"quiz-medicine-001","type":"multiple-choice","vocabularyIds":["health-medicine-001"],"question":"What does “medicine” mean?","options":["ยา, เวชภัณฑ์","อาหารเช้า","ออกกำลังกาย","การนอนหลับ"],"correctAnswer":"ยา, เวชภัณฑ์","explanation":"Medicine is what you take to treat an illness.","status":"approved"},
+    {"id":"quiz-checkup-001","type":"multiple-choice","vocabularyIds":["health-checkup-001"],"question":"What does “checkup” mean?","options":["การตรวจร่างกาย","การผ่าตัด","การฉีดวัคซีน","การพักผ่อน"],"correctAnswer":"การตรวจร่างกาย","explanation":"A checkup is a medical examination to make sure you are healthy.","status":"approved"},
+    {"id":"quiz-healthy-001","type":"multiple-choice","vocabularyIds":["health-healthy-001"],"question":"What does “healthy” mean?","options":["แข็งแรง, สุขภาพดี","เหนื่อยล้า","เจ็บป่วย","หิวโหย"],"correctAnswer":"แข็งแรง, สุขภาพดี","explanation":"Healthy means being in good physical condition.","status":"approved"},
+
+    {"id":"quiz-right-001","type":"multiple-choice","vocabularyIds":["law-right-001"],"question":"What does “right” (as a noun) mean?","options":["สิทธิ","ด้านขวา","หน้าที่","ข้อเสนอ"],"correctAnswer":"สิทธิ","explanation":"A right is something you are legally allowed to do or have.","status":"approved"},
+    {"id":"quiz-law-001","type":"multiple-choice","vocabularyIds":["law-law-001"],"question":"What does “law” mean?","options":["กฎหมาย","กฎห้องเรียน","คำสั่ง","นิทาน"],"correctAnswer":"กฎหมาย","explanation":"A law is a rule made by a country that everyone must follow.","status":"approved"},
+    {"id":"quiz-fair-001","type":"multiple-choice","vocabularyIds":["law-fair-001"],"question":"What does “fair” mean?","options":["ยุติธรรม, เป็นธรรม","โกรธ","รวดเร็ว","เงียบ"],"correctAnswer":"ยุติธรรม, เป็นธรรม","explanation":"Fair means treating everyone equally.","status":"approved"},
+    {"id":"quiz-rule-001","type":"multiple-choice","vocabularyIds":["law-rule-001"],"question":"What does “rule” mean?","options":["กฎ, ข้อบังคับ","เกม","เพลง","บ้าน"],"correctAnswer":"กฎ, ข้อบังคับ","explanation":"A rule is a guideline about what you should or should not do.","status":"approved"},
+    {"id":"quiz-citizen-001","type":"multiple-choice","vocabularyIds":["law-citizen-001"],"question":"What does “citizen” mean?","options":["พลเมือง","นักเรียน","ครู","แพทย์"],"correctAnswer":"พลเมือง","explanation":"A citizen is a member of a country with rights and duties.","status":"approved"},
+
+    {"id":"quiz-observe-001","type":"multiple-choice","vocabularyIds":["science-observe-001"],"question":"What does “observe” mean?","options":["สังเกต","ทดลอง","วัด","คำนวณ"],"correctAnswer":"สังเกต","explanation":"To observe means to watch and notice carefully.","status":"approved"},
+    {"id":"quiz-research-001","type":"multiple-choice","vocabularyIds":["science-research-001"],"question":"What does “research” mean?","options":["งานวิจัย, การค้นคว้า","การบ้าน","หนังสือเรียน","การสอบ"],"correctAnswer":"งานวิจัย, การค้นคว้า","explanation":"Research is careful study to discover new knowledge.","status":"approved"},
+    {"id":"quiz-experiment-001","type":"multiple-choice","vocabularyIds":["science-experiment-001"],"question":"What does “experiment” mean?","options":["การทดลอง","การเดินทาง","การประชุม","การแข่งขัน"],"correctAnswer":"การทดลอง","explanation":"An experiment is a test you do to learn something.","status":"approved"},
+    {"id":"quiz-energy-001","type":"multiple-choice","vocabularyIds":["science-energy-001"],"question":"What does “energy” mean?","options":["พลังงาน","น้ำ","อากาศ","ความร้อน"],"correctAnswer":"พลังงาน","explanation":"Energy is the power that makes things work.","status":"approved"},
+    {"id":"quiz-planet-001","type":"multiple-choice","vocabularyIds":["science-planet-001"],"question":"What does “planet” mean?","options":["ดาวเคราะห์","ดวงจันทร์","ดวงอาทิตย์","อุกกาบาต"],"correctAnswer":"ดาวเคราะห์","explanation":"A planet is a large round object that orbits a star.","status":"approved"}
   ],
   "lessons": [
-    {"id":"lesson-daily-life-001","level":"easy","category":"daily-life","wordIds":["daily-thrive-001","daily-curious-001","daily-gentle-001","daily-journey-001","daily-discover-001"],"quizIds":["quiz-thrive-001","quiz-curious-001","quiz-gentle-001","quiz-journey-001","quiz-discover-001"],"status":"approved"}
+    {
+      "id": "lesson-daily-life-001",
+      "level": "easy",
+      "category": "daily-life",
+      "teacher": "mochi",
+      "wordIds": ["daily-thrive-001", "daily-curious-001", "daily-gentle-001", "daily-journey-001", "daily-discover-001"],
+      "quizIds": ["quiz-thrive-001", "quiz-curious-001", "quiz-gentle-001", "quiz-journey-001", "quiz-discover-001"],
+      "status": "approved"
+    },
+    {
+      "id": "lesson-restaurant-001",
+      "level": "easy",
+      "category": "restaurant",
+      "teacher": "chef-momo",
+      "wordIds": ["restaurant-menu-001", "restaurant-delicious-001", "restaurant-waiter-001", "restaurant-order-001", "restaurant-taste-001"],
+      "quizIds": ["quiz-menu-001", "quiz-delicious-001", "quiz-waiter-001", "quiz-order-001", "quiz-taste-001"],
+      "status": "approved"
+    },
+    {
+      "id": "lesson-travel-001",
+      "level": "easy",
+      "category": "travel",
+      "teacher": "captain-whiskers",
+      "wordIds": ["travel-arrive-001", "travel-passport-001", "travel-luggage-001", "travel-depart-001", "travel-destination-001"],
+      "quizIds": ["quiz-arrive-001", "quiz-passport-001", "quiz-luggage-001", "quiz-depart-001", "quiz-destination-001"],
+      "status": "approved"
+    },
+    {
+      "id": "lesson-medical-001",
+      "level": "intermediate",
+      "category": "medical",
+      "teacher": "doctor-paws",
+      "wordIds": ["health-recover-001", "health-symptom-001", "health-medicine-001", "health-checkup-001", "health-healthy-001"],
+      "quizIds": ["quiz-recover-001", "quiz-symptom-001", "quiz-medicine-001", "quiz-checkup-001", "quiz-healthy-001"],
+      "status": "approved"
+    },
+    {
+      "id": "lesson-law-001",
+      "level": "easy",
+      "category": "law-citizenship",
+      "teacher": "loffy",
+      "wordIds": ["law-right-001", "law-law-001", "law-fair-001", "law-rule-001", "law-citizen-001"],
+      "quizIds": ["quiz-right-001", "quiz-law-001", "quiz-fair-001", "quiz-rule-001", "quiz-citizen-001"],
+      "status": "approved"
+    },
+    {
+      "id": "lesson-science-001",
+      "level": "intermediate",
+      "category": "science",
+      "teacher": "nova",
+      "wordIds": ["science-observe-001", "science-research-001", "science-experiment-001", "science-energy-001", "science-planet-001"],
+      "quizIds": ["quiz-observe-001", "quiz-research-001", "quiz-experiment-001", "quiz-energy-001", "quiz-planet-001"],
+      "status": "approved"
+    }
   ]
 }
