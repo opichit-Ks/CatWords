@@ -14,6 +14,19 @@
     status.textContent = text;
     status.className = 'push-status' + (tone ? ' ' + tone : '');
   };
+
+  // แปลง Firebase error ให้เป็นข้อความที่บอกวิธีแก้
+  const friendlyError = (error) => {
+    const code = error && error.code ? error.code : '';
+    const map = {
+      'auth/configuration-not-found': 'ยังไม่ได้เปิดใช้งาน Anonymous sign-in — ไปที่ Firebase Console → Authentication → Sign-in method → เปิด "Anonymous" แล้วกดบันทึก แล้วลองใหม่',
+      'auth/operation-not-allowed': 'ยังไม่ได้เปิดใช้งาน Anonymous sign-in — ไปที่ Firebase Console → Authentication → Sign-in method → เปิด "Anonymous" แล้วลองใหม่',
+      'messaging/unsupported-browser': 'เบราว์เซอร์นี้ไม่รองรับ Web Push — ลอง Chrome/Edge บน HTTPS',
+      'messaging/invalid-vapid-key': 'VAPID key ไม่ถูกต้อง — ตรวจสอบค่า vapidKey ใน data/firebase-config.js',
+      'messaging/token-subscribe-failed': 'ดึง FCM token ไม่สำเร็จ — ลองใหม่สักครู่ (หรือเปิดเว็บผ่าน HTTPS จริง)'
+    };
+    return map[code] || String((error && error.message) || error);
+  };
   const setToggle = (on) => {
     toggle.classList.toggle('selected', on);
     toggle.textContent = on ? 'ปิดการแจ้งเตือน' : 'เปิดการแจ้งเตือน';
@@ -60,6 +73,8 @@
       toggle.disabled = true;
       setStatus('กำลังเปิดการแจ้งเตือน…');
       try {
+        // login ก่อน (ถ้ายังไม่ได้เปิด Anonymous จะได้ error ชัดเจนก่อนขอสิทธิ์)
+        const userCredential = await fb.auth.signInAnonymously();
         const permission = await Notification.requestPermission();
         if (permission !== 'granted') {
           setToggle(false);
@@ -71,13 +86,19 @@
           vapidKey: fb.config.vapidKey,
           serviceWorkerRegistration: registration
         });
-        const userCredential = await fb.auth.signInAnonymously();
         const settings = (window.CatWordsSettings && window.CatWordsSettings.read()) || {};
+        // reminderUtcHour = ชั่วโมง UTC ที่ตรงกับเวลาท้องถิ่นที่เลือก (scheduler ใช้ค่านี้)
+        const reminderTime = time.value || '07:00';
+        const [rh, rm] = reminderTime.split(':').map(Number);
+        const localNow = new Date();
+        const localReminder = new Date(localNow.getFullYear(), localNow.getMonth(), localNow.getDate(), rh, rm, 0, 0);
+        const reminderUtcHour = localReminder.getUTCHours();
         await fb.db.collection('users').doc(userCredential.user.uid).set({
           displayName: settings.displayName || 'คุณนักเรียน',
           pushEnabled: true,
           fcmTokens: firebase.firestore.FieldValue.arrayUnion(token),
-          reminderTime: time.value || '07:00',
+          reminderTime: reminderTime,
+          reminderUtcHour: reminderUtcHour,
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Bangkok',
           updatedAt: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
@@ -86,7 +107,7 @@
         setStatus(`เปิดแล้ว — จะส่งคำศัพท์ประจำวันตอน ${time.value || '07:00'} น. ตามเวลาของคุณ 🎉`);
       } catch (error) {
         setToggle(false);
-        setStatus('เกิดข้อผิดพลาด: ' + ((error && error.message) || error));
+        setStatus('เกิดข้อผิดพลาด: ' + friendlyError(error));
       } finally {
         toggle.disabled = false;
       }
@@ -105,7 +126,7 @@
         setToggle(false);
         setStatus('ปิดการแจ้งเตือนแล้ว — มาเปิดใหม่ได้ทุกเมื่อ');
       } catch (error) {
-        setStatus('เกิดข้อผิดพลาด: ' + ((error && error.message) || error));
+        setStatus('เกิดข้อผิดพลาด: ' + friendlyError(error));
       } finally {
         toggle.disabled = false;
       }
