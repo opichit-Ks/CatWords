@@ -5,8 +5,9 @@
 ## โครงสร้าง
 
 ```
+firebase.json              # อยู่ที่ root: hosting + functions + rules
+.firebaserc                # ผูกโปรเจกต์เริ่มต้น (catwords)
 firebase/
-├── firebase.json          # hosting (rewrite → index.html) + functions + rules
 ├── firestore.rules        # users เจ้าของอ่านเขียนเอง, เนื้อหาอ่านได้สาธารณะ
 └── functions/
     ├── package.json
@@ -18,34 +19,39 @@ firebase/
 ```bash
 npm install -g firebase-tools
 firebase login
-firebase use <project-id>     # โปรเจกต์ที่สร้างไว้
+firebase use catwords        # โปรเจกต์ที่สร้างไว้ (มีใน .firebaserc แล้ว)
 ```
+
+> รันคำสั่ง deploy จาก **root ของโปรเจกต์** เสมอ (firebase.json อยู่ที่นั่น)
 
 ## 2. ใส่ config ของคุณในเว็บแอป
 
-แก้ `data/firebase-config.js` ตัวจริง (ตัวอย่างอยู่ใน `.env.example` และ `data/firebase-config.example.js` ถ้ามี):
+แก้ `data/firebase-config.js`:
 
 ```js
-window.CATWORDS_FIREBASE_CONFIG = {
+globalThis.CatWordsFirebaseConfig = {
   apiKey: "…",
   authDomain: "…",
   projectId: "…",
   storageBucket: "…",
   messagingSenderId: "…",
   appId: "…",
-  vapidKey: "…"   // จาก Cloud Messaging > Web configuration
+  vapidKey: "…"   // จาก Cloud Messaging > Web configuration > Key pair
 };
 ```
 
-> ไฟล์นี้เป็น placeholder อยู่ตอนนี้ — แอปยังทำงานปกติ (local-first) โดยไม่ต้องมี Firebase
+> ค่าเป็น PUBLIC ตามดีไซน์ของ Firebase (Firestore rules กันคนอื่นเขียนข้อมูล) — ห้ามใส่ secret เช่น service account key
 
 ## 3. Deploy
 
 ```bash
-firebase deploy --only firestore:rules   # rules ก่อน
-firebase deploy --only functions         # functions
-firebase deploy --only hosting           # เว็บแอป (แทน/เสริม GitHub Pages)
+firebase deploy --only hosting           # เว็บแอป (public = โฟลเดอร์ root)
+firebase deploy --only firestore:rules   # rules
+firebase deploy --only functions         # functions (ต้องตั้ง secrets ก่อน)
+firebase deploy                          # ทั้งหมด
 ```
+
+> GitHub Pages ยัง serve อยู่ที่ `https://opichit-Ks.github.io/CatWords/` — Firebase Hosting จะอยู่ที่ `https://catwords.web.app` (ทั้งคู่ใช้ relative path จึงใช้ code ชุดเดียวกัน)
 
 ### Secrets สำหรับ functions
 
@@ -56,14 +62,13 @@ firebase functions:secrets:set ADMIN_API_KEY
 
 - `GEMINI_API_KEY` — key จาก [AI Studio](https://aistudio.google.com/apikey) (free tier เพียงพอ)
 - `ADMIN_API_KEY` — key ที่แอป/สคริปต์ใช้เรียก `generateContent` (ไม่ตั้งได้ แต่ endpoint จะเปิดเปล่า)
-- `APP_URL` / `CONTENT_URL` — env ใน `functions/.env` ถ้าอยากชี้ไปที่อื่น (default = GitHub Pages)
+- `APP_URL` / `CONTENT_URL` — env ใน `firebase/functions/.env` ถ้าอยากชี้ไปที่อื่น (default = GitHub Pages)
 
 ## 4. ทดสอบ local
 
 ```bash
 cd firebase/functions
 npm install
-npm test                 # ถ้ามี unit test
 firebase emulators:start --only firestore,functions
 ```
 
@@ -86,5 +91,5 @@ curl -X POST https://<region>-<project>.cloudfunctions.net/generateContent \
 ## ผู้ใช้ / FCM
 
 - ใช้ **Anonymous Auth** — ผู้เรียนกด "รับการแจ้งเตือน" → Firebase สร้าง UID ให้อัตโนมัติ (ไม่ต้องกรอกอีเมล)
-- `users/{uid}`: `{ pushEnabled, reminderUtcHour, fcmTokens[], learningLevel, lastPushDate, lastPushAt }`
-- Token ที่ FCM บอกว่า invalid จะถูกลบออกอัตโนมัติตอนส่งรอบถัดไป
+- `users/{uid}`: `{ displayName, pushEnabled, fcmTokens[], reminderTime, timezone, updatedAt }`
+- Token ที่ FCM บอกว่า invalid จะถูกลบออกอัตโนมัติตอนส่งรอบถัดไป (ใน `sendDailyWordNotification`)
