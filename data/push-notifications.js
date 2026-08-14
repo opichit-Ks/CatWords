@@ -42,6 +42,18 @@
     setStatus(message);
   };
 
+  // ตรวจอุปกรณ์: iPhone/iPad (Safari ธรรมดาไม่มี Notification API — ต้องติดตั้งเป็นแอป)
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isStandalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
+
+  const guidanceForDevice = () => {
+    if (isIOS && !isStandalone) {
+      return 'iPhone/iPad ต้องติดตั้งเป็นแอปก่อน:\n1) แตะปุ่มแชร์ 📤 (แถบด้านล่าง Safari)\n2) เลือก "เพิ่มไปหน้าจอหลัก"\n3) เปิด CatWords จากหน้าจอหลัก\n4) กลับมาหน้านี้แล้วกด "เปิดการแจ้งเตือน" (ต้อง iOS 16.4+)\n\nถ้าใช้ Android: เปิดใน Chrome แล้วกดอนุญาตได้เลย';
+    }
+    return 'เบราว์เซอร์นี้ไม่รองรับ Web Push — ใช้ Chrome/Edge บนคอมพิวเตอร์หรือ Android แล้วกดอนุญาตการแจ้งเตือน';
+  };
+
   let fb = window.CatWordsFirebase || { ready: false, reason: 'loading' };
 
   const bind = () => {
@@ -52,7 +64,7 @@
       return;
     }
     if (!('Notification' in window)) {
-      return unsupported('เบราว์เซอร์นี้ไม่รองรับการแจ้งเตือน (ต้องใช้ Chrome/Edge บน HTTPS)');
+      return unsupported(guidanceForDevice());
     }
 
     toggle.disabled = false;
@@ -104,7 +116,8 @@
         }, { merge: true });
         localStorage.setItem(LOCAL_FLAG, '1');
         setToggle(true);
-        setStatus(`เปิดแล้ว — จะส่งคำศัพท์ประจำวันตอน ${time.value || '07:00'} น. ตามเวลาของคุณ 🎉`);
+        const where = isIOS ? ' (เครื่องนี้)' : '';
+        setStatus(`เปิดแล้ว${where} — จะส่งคำศัพท์ประจำวันตอน ${time.value || '07:00'} น. ตามเวลาของคุณ 🎉 ข้อความจะโผล่เป็นการแจ้งเตือนของระบบ แตะแล้วเปิดไปหน้าเรียน`);
       } catch (error) {
         setToggle(false);
         setStatus('เกิดข้อผิดพลาด: ' + friendlyError(error));
