@@ -72,7 +72,21 @@ npm install
 firebase emulators:start --only firestore,functions
 ```
 
-## Endpoint
+## ⚠️ Cloud Functions ต้องใช้แผน Blaze (มีบัตรเครดิต)
+
+โปรเจกต์ Spark ฟรี deploy ฟังก์ชันไม่ได้ (ต้องอัปเกรดเป็น Blaze ถึงใช้ Cloud Functions ได้ แม้ฟรี tier จะครอบคลุมค่าใช้จ่ายก็ตาม)
+
+### ทางเลือกฟรี 100% — GitHub Actions cron
+
+`.github/workflows/send-daily-word.yml` + `tools/notify-daily.js` — ทำงานแบบเดียวกับ `sendDailyWordNotification` (เลือกบทเรียนของวันตาม `pickLesson`, ส่งเฉพาะผู้ใช้ที่ถึงเวลา `reminderUtcHour`, prune token เสีย) แต่วิ่งบน GitHub Actions ซึ่งฟรีบน repo public:
+
+1. Firebase Console → Project settings → **Service accounts** → Generate new private key (ดาวน์โหลด JSON)
+2. base64: `base64 -w0 <key.json>` แล้วเอาไปใส่ GitHub → Settings → **Secrets and variables → Actions → New secret** ชื่อ `FIREBASE_SERVICE_ACCOUNT`
+3. (Optional) ตั้ง `APP_URL` ใน repository variables ถ้าไม่ใช้ GitHub Pages
+4. Workflow วิ่งทุกชั่วโมงอัตโนมัติ (หรือกด Actions → Send daily word notification → Run workflow เพื่อเทสต์)
+5. ทดสอบ local: `node tools/notify-daily.js --dry-run`
+
+## Endpoint (เมื่ออัปเกรดเป็น Blaze)
 
 | Endpoint | ใช้ทำอะไร |
 |---|---|

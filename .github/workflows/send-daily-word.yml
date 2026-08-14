@@ -1,0 +1,26 @@
+name: Send daily word notification
+
+on:
+  schedule:
+    # ทุกชั่วโมง (UTC) — สคริปต์จะส่งเฉพาะผู้ใช้ที่ reminderUtcHour ตรงชั่วโมงนั้น
+    - cron: '5 * * * *'
+  workflow_dispatch: {}   # เปิดใช้มือจาก GitHub → Actions → Run workflow
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install firebase-admin
+        run: npm install firebase-admin@^12 --no-save
+
+      - name: Send daily word push
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          APP_URL: ${{ vars.APP_URL }}
+        run: node tools/notify-daily.js
