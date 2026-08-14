@@ -103,7 +103,7 @@
         </div>
       </section>
 
-      <section class="panel" style="margin-top:16px">
+      <section class="panel">
         <h2>คำศัพท์จากเรื่องนี้</h2>
         <p class="muted">แตะคำเพื่อดูความหมายและฟังการออกเสียง</p>
         <div class="chips" id="word-chips">${words.map(chipMarkup).join('')}</div>
@@ -113,7 +113,7 @@
         ? `<div class="reading-done"><span class="rd-icon">🎉</span><div><b>วันนี้คุณอ่านเรื่องนี้แล้ว!</b><small>ทำความเข้าใจได้ ${state.readingScore}/3 ข้อ · อ่านซ้ำได้อีกเท่าไหร่ก็ได้</small></div></div>`
         : ''}
 
-      <section class="panel story-box" style="margin-top:16px">
+      <section class="panel story-box">
         <div class="story-head">
           <h2>${escape(story.title)}</h2>
           <button class="toggle-translation" id="toggle-translation" type="button">แสดงคำแปลไทย 🇹🇭</button>
@@ -125,7 +125,7 @@
         `).join('')}</div>
       </section>
 
-      <section class="panel" id="comprehension" style="margin-top:16px">
+      <section class="panel" id="comprehension">
         <h2>ตรวจความเข้าใจ</h2>
         <p class="muted">ตอบคำถาม 3 ข้อจากเรื่องที่เพิ่งอ่าน</p>
         <div id="questions"></div>

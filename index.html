@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CatWords — หน้าหลัก</title>
 <script>try{if(JSON.parse(localStorage.getItem('catwords-settings')||'{}').theme==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#23465d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -23,6 +25,10 @@
   .hero img { position:absolute; width:275px; height:285px; object-fit:contain; right:-10px; bottom:-27px; filter:drop-shadow(0 13px 13px rgba(122,91,73,.16)); }
   .cloud { display:none; }
   html.dark .hero { filter:brightness(.88); }
+  .hero .cta { position:relative; z-index:2; }
+  .hero img { z-index:1; }
+  .mission .cta { position:relative; z-index:2; }
+  .mission img { z-index:1; }
 
   .stats { display:grid; grid-template-columns:1fr; gap:15px; margin-top:16px; }
   .stat { background:var(--surface-glass); border:1px solid rgba(255,255,255,.9); border-radius:18px; box-shadow:var(--shadow); padding:13px; display:flex; align-items:center; gap:13px; }
@@ -174,7 +180,10 @@
 <script src="data/app-shell.js"></script>
 <script src="data/theme-toggle.js"></script>
 <script src="data/more-menu.js"></script>
+<script src="data/content-loader.js"></script>
 <script src="data/dashboard.js"></script>
+<script src="data/notifications.js"></script>
+<script src="data/sw-register.js"></script>
 <script src="data/back-to-top.js"></script>
 </body>
 </html>

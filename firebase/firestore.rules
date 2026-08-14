@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Learners own their own profile + tokens.
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Daily AI-generated story (write once per day by a scheduled/trigger function).
+    match /dailyContent/{date} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Curated vocabulary — written only by the content pipeline (Cloud Functions),
+    // readable by everyone so the app never needs auth to fetch words.
+    match /vocabulary/{wordId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Lessons catalogue — same rule as vocabulary.
+    match /lessons/{lessonId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

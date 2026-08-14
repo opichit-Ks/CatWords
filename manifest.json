@@ -1,0 +1,26 @@
+{
+  "name": "CatWords Academy — เรียนอังกฤษวันละ 5 คำกับน้องแมว",
+  "short_name": "CatWords",
+  "description": "เรียนภาษาอังกฤษวันละ 5 คำกับแก๊งน้องแมว พร้อมเรื่องสั้นประจำวัน",
+  "lang": "th",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e2f2f8",
+  "theme_color": "#23465d",
+  "icons": [
+    {
+      "src": "public/assets/characters/mochi/poses/mochi-wave.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/assets/characters/mochi/poses/mochi-wave.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

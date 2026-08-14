@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CatWords — ตั้งค่า</title>
 <script>try{if(JSON.parse(localStorage.getItem('catwords-settings')||'{}').theme==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#23465d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -32,6 +34,12 @@
   .pill-level button.selected { border-color:var(--mint); color:var(--mint-text); background:var(--mint-soft); }
   .danger button { background:var(--peach-soft); color:var(--peach-strong); border:1.5px solid var(--peach); }
   .danger button:hover { filter:brightness(.97); }
+  #push-toggle { border:1.5px solid var(--line); background:var(--surface); border-radius:12px; padding:10px 14px; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; }
+  #push-toggle:hover:not(:disabled) { border-color:var(--mint); }
+  #push-toggle.selected { border-color:var(--mint); color:var(--mint-text); background:var(--mint-soft); }
+  #push-toggle:disabled { opacity:.5; cursor:default; }
+  .push-status { font-size:11px; color:var(--muted); margin:12px 0 0; line-height:1.6; }
+  .push-status.ok { color:var(--mint-text); }
   .avatar-lg { width:64px; height:64px; border-radius:20px; font-size:34px; }
   @media (min-width:561px) {
     .setting-row { flex-direction:row; align-items:center; justify-content:space-between; gap:14px; }
@@ -113,6 +121,28 @@
         </div>
       </section>
 
+      <section class="panel" id="notify-section">
+        <h2>การแจ้งเตือนรายวัน 🔔</h2>
+        <div class="setting-row">
+          <div><b>แจ้งเตือนคำศัพท์ประจำวัน</b><small>Push ไปยังเครื่องนี้ตอนเช้า — ต้องเปิดใช้งานผ่าน HTTPS และ login อัตโนมัติ</small></div>
+          <button type="button" id="push-toggle">เปิดการแจ้งเตือน</button>
+        </div>
+        <div class="setting-row">
+          <div><b>เวลาแจ้งเตือน</b><small>เวลาท้องถิ่นที่อยากให้ได้รับคำศัพท์ของวัน</small></div>
+          <select id="push-time" aria-label="เวลาแจ้งเตือน">
+            <option>06:00</option>
+            <option selected>07:00</option>
+            <option>08:00</option>
+            <option>09:00</option>
+            <option>17:00</option>
+            <option>18:00</option>
+            <option>19:00</option>
+            <option>20:00</option>
+          </select>
+        </div>
+        <p class="push-status" id="push-status">กำลังตรวจสอบการเชื่อมต่อ Firebase…</p>
+      </section>
+
       <section class="panel danger">
         <h2>ข้อมูล</h2>
         <div class="setting-row">
@@ -140,6 +170,9 @@
 <script src="data/app-shell.js"></script>
 <script src="data/theme-toggle.js"></script>
 <script src="data/more-menu.js"></script>
+<script src="data/firebase-config.js"></script>
+<script src="data/firebase-init.js"></script>
+<script src="data/push-notifications.js"></script>
 <script>
   (function () {
     if (!window.CatWordsSettings) return;
@@ -217,6 +250,7 @@
     });
   })();
 </script>
+<script src="data/sw-register.js"></script>
 <script src="data/back-to-top.js"></script>
 </body>
 </html>
