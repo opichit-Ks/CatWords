@@ -8,7 +8,8 @@
   const heroTitle = document.querySelector('.hero h2');
   const heroText = document.querySelector('.hero p');
   const heroAction = document.querySelector('.hero .cta');
-  const firstTaskTag = document.querySelector('.task .tag');
+  const firstTaskTag = document.querySelector('#lesson-task-tag');
+  const readingTaskTag = document.querySelector('#reading-task-tag');
 
   if (streak) streak.textContent = `${state.currentStreak} วัน`;
   if (stats.length >= 3) {
@@ -16,6 +17,10 @@
     stats[1].textContent = state.coins;
     stats[2].textContent = state.lessonsCompleted;
   }
+
+  if (state.readingCompleted && readingTaskTag) readingTaskTag.textContent = 'อ่านแล้ว 🎉';
+  else if (state.quizCompleted && readingTaskTag) readingTaskTag.textContent = 'อ่านเลย';
+  else if (state.lessonCompleted && readingTaskTag) readingTaskTag.textContent = 'อ่านได้แล้ว';
 
   if (state.quizCompleted) {
     if (heroTitle) heroTitle.innerHTML = 'วันนี้เรียนครบแล้ว<br><em>เก่งมากเลย!</em>';

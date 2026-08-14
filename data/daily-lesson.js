@@ -156,7 +156,7 @@
       const answerCards = answers.length
         ? answers.map((answer, answerIndex) => `<div class="answer-card ${answer.correct ? 'ok' : 'no'}"><b>ข้อ ${answerIndex + 1} · ${escape(answer.word)}</b><small>${answer.correct ? '✅ ตอบถูก' : '❌ ตอบผิด'}</small><span>คำตอบของคุณ: ${escape(answer.selected)}</span>${answer.correct ? '' : `<span class="correct-answer">คำตอบที่ถูกต้อง: ${escape(answer.correctAnswer)}</span>`}</div>`).join('')
         : '<div class="answer-card ok"><b>ทำ Quiz วันนี้เรียบร้อยแล้ว 🎉</b><small>กลับมาเรียนคำใหม่พรุ่งนี้นะ</small></div>';
-      card.innerHTML = `<div class="word-icon">🏆</div><h2 style="font-family:var(--font-sans)">สรุปผล Daily Quiz</h2><p class="pronounce" style="font-family:var(--font-sans)">คุณตอบถูก ${state.quizScore} จาก 5 ข้อ</p><div id="answer-cards" style="display:grid;gap:10px;margin-top:18px">${answerCards}</div><div class="actions"><span>+${reward.earnedXP} XP · +${reward.earnedCoins} 🐟</span><a class="primary" href="index.html">กลับหน้าหลัก →</a></div>`;
+      card.innerHTML = `<div class="word-icon">🏆</div><h2 style="font-family:var(--font-sans)">สรุปผล Daily Quiz</h2><p class="pronounce" style="font-family:var(--font-sans)">คุณตอบถูก ${state.quizScore} จาก 5 ข้อ</p><div id="answer-cards" style="display:grid;gap:10px;margin-top:18px">${answerCards}</div><div class="actions"><span>+${reward.earnedXP} XP · +${reward.earnedCoins} 🐟</span><div style="display:flex;gap:10px;align-items:center"><a class="secondary" href="index.html">← กลับหน้าหลัก</a><a class="primary" href="reading.html">อ่านเรื่องสั้นวันนี้ →</a></div></div>`;
     };
 
     const initialState = window.CatWordsProgress.read();

@@ -50,7 +50,7 @@
   .task-head { display:flex; justify-content:space-between; align-items:center; }
   .task-head h3 { font-size:16px; margin:0; }
   .task-head small { font-size:10px; color:var(--mint); }
-  .task { display:flex; align-items:center; gap:11px; padding:12px 0; border-bottom:1px solid var(--line-2); }
+  .task { display:flex; align-items:center; gap:11px; padding:12px 0; border-bottom:1px solid var(--line-2); text-decoration:none; color:inherit; }
   .task:last-child { border:0; }
   .task-icon { width:39px; height:39px; border-radius:12px; display:grid; place-items:center; font-size:18px; }
   .task b, .task small { display:block; }
@@ -95,8 +95,9 @@
   <aside class="side">
     <a class="brand" href="index.html"><span class="mark">🐾</span><span><b>CatWords</b><small>ACADEMY</small></span></a>
     <nav class="nav">
-      <a data-page="index" href="index.html"><span>⌂</span>หน้าหลัก</a>
+      <a data-page="index" href="index.html"><span>🏠</span>หน้าหลัก</a>
       <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียนวันนี้</a>
+      <a data-page="reading" href="reading.html"><span>📚</span>อ่านเรื่อง</a>
       <a data-page="progress" href="progress.html"><span>📈</span>ความก้าวหน้า</a>
       <a data-page="collection" href="collection.html"><span>🎒</span>คอลเลกชัน</a>
       <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
@@ -148,8 +149,8 @@
       </article>
       <article class="panel">
         <div class="task-head"><h3>ภารกิจถัดไป</h3><small>วันนี้</small></div>
-        <div class="task"><span class="task-icon mint">✅</span><div><b>Daily Lesson</b><small>5 คำศัพท์ใหม่</small></div><span class="tag">กำลังเรียน</span></div>
-        <div class="task"><span class="task-icon lav">📚</span><div><b>Reading Practice</b><small>เรื่องสั้นประจำวัน</small></div><span class="tag">ถัดไป</span></div>
+        <a class="task" href="daily-lesson.html"><span class="task-icon mint">✅</span><div><b>Daily Lesson</b><small>5 คำศัพท์ใหม่</small></div><span class="tag" id="lesson-task-tag">กำลังเรียน</span></a>
+        <a class="task" href="reading.html"><span class="task-icon lav">📚</span><div><b>Reading Practice</b><small>เรื่องสั้นประจำวัน</small></div><span class="tag" id="reading-task-tag">ถัดไป</span></a>
         <div class="task"><span class="task-icon peach">🏆</span><div><b>Achievement</b><small>สะสมรางวัลใหม่</small></div><span class="tag">รอปลดล็อก</span></div>
       </article>
     </section>
@@ -158,10 +159,12 @@
     <section class="districts" id="districts" aria-label="แผนที่ย่านใน Meowville"></section>
 
     <nav class="bottom">
-      <a data-page="index" href="index.html"><span>⌂</span>หน้าหลัก</a>
-      <a data-page="daily-lesson" href="daily-lesson.html"><span>☷</span>เรียน</a>
-      <a data-page="progress" href="progress.html"><span>▣</span>ความก้าวหน้า</a>
-      <a data-page="collection" href="collection.html"><span>♙</span>คอลเลกชัน</a>
+      <a data-page="index" href="index.html"><span>🏠</span>หน้าหลัก</a>
+      <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียน</a>
+      <a data-page="reading" href="reading.html"><span>📚</span>อ่าน</a>
+      <a data-page="progress" href="progress.html"><span>📈</span>ก้าวหน้า</a>
+      <a data-page="collection" href="collection.html"><span>🎒</span>ตัวละคร</a>
+      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
     </nav>
   </main>
 </div>

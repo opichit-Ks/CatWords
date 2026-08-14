@@ -29,6 +29,10 @@
     lessonCompleted: false,
     quizCompleted: false,
     quizScore: 0,
+    readingCompleted: false,
+    readingScore: 0,
+    readingsCompleted: 0,
+    readingDates: [],
     xp: 0,
     coins: 0,
     wordsLearned: 0,
@@ -48,6 +52,10 @@
       coins: integer(source.coins),
       wordsLearned: integer(source.wordsLearned),
       lessonsCompleted: integer(source.lessonsCompleted),
+      readingsCompleted: integer(source.readingsCompleted),
+      readingDates: Array.isArray(source.readingDates)
+        ? [...new Set(source.readingDates.filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date)))].slice(-90)
+        : [],
       currentStreak: integer(source.currentStreak),
       longestStreak: integer(source.longestStreak),
       lastCompletionDate: typeof source.lastCompletionDate === 'string' ? source.lastCompletionDate : null,
@@ -61,6 +69,8 @@
       state.lessonCompleted = Boolean(source.lessonCompleted || source.completed || word >= WORDS_PER_LESSON);
       state.quizCompleted = Boolean(source.quizCompleted);
       state.quizScore = Math.min(WORDS_PER_LESSON, integer(source.quizScore));
+      state.readingCompleted = Boolean(source.readingCompleted);
+      state.readingScore = Math.min(3, integer(source.readingScore));
     }
 
     state.completed = state.lessonCompleted;
@@ -123,5 +133,25 @@
     return { state, changed: true, earnedXP, earnedCoins };
   };
 
-  global.CatWordsProgress = { read, recordWord, submitQuiz, localDate, levelFor };
+  // Complete today's Reading Practice (story + comprehension check).
+  // Awarded once per day: base reward for finishing, plus bonus per correct answer.
+  const completeReading = (score) => {
+    const state = read();
+    if (state.readingCompleted) return { state, changed: false, earnedXP: 0, earnedCoins: 0 };
+
+    const readingScore = Math.min(3, Math.max(0, integer(score)));
+    const earnedXP = 9 + readingScore * 6;
+    const earnedCoins = 3 + readingScore * 2;
+    state.readingCompleted = true;
+    state.readingScore = readingScore;
+    state.readingsCompleted += 1;
+    state.readingDates = [...new Set([...state.readingDates, state.day])].slice(-90);
+    state.xp += earnedXP;
+    state.coins += earnedCoins;
+
+    write(state);
+    return { state, changed: true, earnedXP, earnedCoins };
+  };
+
+  global.CatWordsProgress = { read, recordWord, submitQuiz, completeReading, localDate, levelFor };
 })(window);

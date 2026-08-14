@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "words": [
     {"id":"daily-thrive-001","word":"thrive","phonetic":"/θraɪv/","partOfSpeech":"verb","thaiMeaning":"เติบโตได้ดี, รุ่งเรือง","exampleSentence":"Plants thrive when they get enough sunlight.","exampleThai":"ต้นไม้เติบโตได้ดีเมื่อได้รับแสงแดดเพียงพอ","level":"easy","category":"daily-life","status":"approved","source":"seed"},
     {"id":"daily-curious-001","word":"curious","phonetic":"/ˈkjʊəriəs/","partOfSpeech":"adjective","thaiMeaning":"อยากรู้อยากเห็น, ช่างสงสัย","exampleSentence":"Curious minds ask thoughtful questions.","exampleThai":"คนช่างสงสัยมักถามคำถามที่น่าสนใจ","level":"easy","category":"daily-life","status":"approved","source":"seed"},
@@ -127,6 +127,182 @@
       "teacher": "nova",
       "wordIds": ["science-observe-001", "science-research-001", "science-experiment-001", "science-energy-001", "science-planet-001"],
       "quizIds": ["quiz-observe-001", "quiz-research-001", "quiz-experiment-001", "quiz-energy-001", "quiz-planet-001"],
+      "status": "approved"
+    }
+  ],
+  "stories": [
+    {
+      "id": "story-daily-life-001",
+      "lessonId": "lesson-daily-life-001",
+      "category": "daily-life",
+      "title": "The Curious Kitten",
+      "titleThai": "ลูกแมวช่างสงสัย",
+      "teacher": "mochi",
+      "level": "easy",
+      "paragraphs": [
+        "Milo was a curious little kitten. He loved to ask questions about everything. 'Why is the sky blue? Why do birds sing?' he asked.",
+        "Every morning, Milo took a gentle walk through the garden. He was careful with the flowers and kind to the small insects he met along the way.",
+        "One day, Milo decided to go on a journey to the big hill at the edge of town. 'There must be something wonderful up there,' he said.",
+        "The journey was long, but Milo did not give up. With each step, he learned something new. Plants thrive in the sunlight, and streams make music on the rocks.",
+        "At the top of the hill, Milo looked at the wide valley below and smiled. He did not just see a new place — he discovered that being curious and gentle made every single day an adventure."
+      ],
+      "translation": [
+        "มิโลเป็นลูกแมวช่างสงสัย เขาชอบถามคำถามเกี่ยวกับทุกสิ่ง 'ทำไมท้องฟ้าถึงเป็นสีฟ้า? ทำไมนกถึงร้องเพลง?' เขาถาม",
+        "ทุกเช้า มิโลเดินเล่นอย่างอ่อนโยนผ่านสวน เขาระวังไม่เหยียบดอกไม้ และใจดีกับแมลงตัวน้อยที่เจอระหว่างทาง",
+        "วันหนึ่ง มิโลตัดสินใจออกเดินทางไปยังเนินเขาลูกใหญ่ที่ขอบเมือง 'บนนั้นต้องมีอะไรที่วิเศษแน่ ๆ' เขาพูด",
+        "การเดินทางยาวไกล แต่มิโลไม่ยอมแพ้ ทุกก้าวเขารู้สิ่งใหม่ ๆ ต้นไม้เติบโตได้ดีเมื่อมีแสงแดด และลำธารเล่นดนตรีกับก้อนหิน",
+        "ที่ยอดเขา มิโลมองหุบเขากว้างใหญ่เบื้องล่างแล้วยิ้ม เขาไม่เพียงเห็นสถานที่ใหม่ — เขาค้นพบว่าการอยากรู้อยากเห็นและการอ่อนโยนทำให้ทุกวันเป็นเหมือนการผจญภัย"
+      ],
+      "questions": [
+        {"question": "Why did Milo walk through the garden every morning?", "options": ["He was curious about everything", "He wanted to sleep", "He was looking for his friends"], "correctAnswer": "He was curious about everything", "explanation": "มิโลช่างอยากรู้อยากเห็น เขาจึงชอบเดินสำรวจสวนทุกเช้า"},
+        {"question": "What helps plants thrive in the story?", "options": ["Sunlight", "Rainwater only", "Dark caves"], "correctAnswer": "Sunlight", "explanation": "ในเรื่องบอกว่าต้นไม้เติบโตได้ดีเมื่อได้รับแสงแดด (thrive in the sunlight)"},
+        {"question": "What did Milo discover at the top of the hill?", "options": ["Being curious and gentle makes every day an adventure", "The town was boring", "Flowers cannot grow"], "correctAnswer": "Being curious and gentle makes every day an adventure", "explanation": "มิโลค้นพบว่าความอยากรู้อยากเห็นและความอ่อนโยนทำให้ทุกวันน่าตื่นเต้น"}
+      ],
+      "status": "approved"
+    },
+    {
+      "id": "story-restaurant-001",
+      "lessonId": "lesson-restaurant-001",
+      "category": "restaurant",
+      "title": "A Delicious Surprise",
+      "titleThai": "เซอร์ไพรส์สุดอร่อย",
+      "teacher": "chef-momo",
+      "level": "easy",
+      "paragraphs": [
+        "Chef Momo opened a new restaurant in Meowville. The menu was full of wonderful dishes — fish soup, curry, and sweet pancakes.",
+        "A friendly waiter named Bob showed the guests to their seats. 'Take your time,' he said. 'The kitchen is ready for you.'",
+        "Luna wanted to try everything, but she could not order too much. She chose the special fish curry and a small salad.",
+        "When the food arrived, Luna took one taste and her eyes grew wide. 'This is delicious!' she cried. 'What is in this sauce?'",
+        "Chef Momo laughed. 'It is my secret recipe! Taste it again and tell me your honest opinion.' Everyone smiled — a delicious meal always makes new friends."
+      ],
+      "translation": [
+        "เชฟโมโมเปิดร้านอาหารใหม่ในเมืองเมียววิลล์ เมนูเต็มไปด้วยอาหารสุดวิเศษ — ซุปปลา แกงกะหรี่ และแพนเค้กหวาน ๆ",
+        "พนักงานเสิร์ฟใจดีชื่อบ็อบพาแขกไปยังที่นั่ง 'ค่อย ๆ เลือกได้นะ' เขาพูด 'ครัวพร้อมสำหรับคุณแล้ว'",
+        "ลูน่าอยากลองทุกอย่าง แต่สั่งมากเกินไปไม่ได้ เธอจึงเลือกแกงกะหรี่ปลาจานพิเศษกับสลัดเล็ก ๆ",
+        "เมื่ออาหารมาเสิร์ฟ ลูน่าลองชิมคำแรกแล้วตาเบิกกว้าง 'อร่อยมาก!' เธออุทาน 'ซอสนี้ใส่อะไรลงไป?'",
+        "เชฟโมโมหัวเราะ 'มันคือสูตรลับของฉัน! ชิมอีกครั้งแล้วบอกความเห็นจริง ๆ นะ' ทุกคนยิ้ม — อาหารอร่อย ๆ มักทำให้เราได้เพื่อนใหม่เสมอ"
+      ],
+      "questions": [
+        {"question": "Who showed the guests to their seats?", "options": ["The waiter", "The chef", "Luna"], "correctAnswer": "The waiter", "explanation": "พนักงานเสิร์ฟชื่อบ็อบเป็นคนพาแขกไปยังที่นั่ง"},
+        {"question": "What did Luna order?", "options": ["The special fish curry and a small salad", "The whole menu", "Only sweet pancakes"], "correctAnswer": "The special fish curry and a small salad", "explanation": "ลูน่าสั่งแกงกะหรี่ปลาจานพิเศษกับสลัดเล็ก ๆ"},
+        {"question": "Why did everyone smile at the end?", "options": ["The delicious meal made new friends", "The restaurant closed early", "It started to rain"], "correctAnswer": "The delicious meal made new friends", "explanation": "อาหารอร่อย ๆ ทำให้ทุกคนได้เป็นเพื่อนกัน"}
+      ],
+      "status": "approved"
+    },
+    {
+      "id": "story-travel-001",
+      "lessonId": "lesson-travel-001",
+      "category": "travel",
+      "title": "The Big Adventure",
+      "titleThai": "การผจญภัยครั้งยิ่งใหญ่",
+      "teacher": "captain-whiskers",
+      "level": "easy",
+      "paragraphs": [
+        "Captain Whiskers was ready for his biggest adventure. He packed his luggage carefully: warm clothes, a map, and his lucky hat.",
+        "At the airport, he checked his passport twice. 'Never forget this little book,' he said. 'It is the key to the world.'",
+        "The plane was about to depart at sunrise. Captain Whiskers looked out the window and waved goodbye to Meowville.",
+        "After many hours, they finally arrived at the coast. The air smelled like salt and coconuts.",
+        "His destination was a small island where the fish spoke English. 'Welcome, Captain!' they sang. It was the perfect end to a long journey."
+      ],
+      "translation": [
+        "กัปตันวิสเกอร์สพร้อมสำหรับการผจญภัยครั้งยิ่งใหญ่ เขาเก็บกระเป๋าเดินทางอย่างรอบคอบ: เสื้อผ้าอุ่น ๆ แผนที่ และหมวกนำโชค",
+        "ที่สนามบิน เขาตรวจหนังสือเดินทางสองรอบ 'อย่าลืมหนังสือเล่มเล็ก ๆ เล่มนี้เด็ดขาด' เขาพูด 'มันคือกุญแจสู่โลกกว้าง'",
+        "เครื่องบินกำลังจะออกเดินทางตอนพระอาทิตย์ขึ้น กัปตันวิสเกอร์สมองออกไปนอกหน้าต่างและโบกลาเมืองเมียววิลล์",
+        "หลายชั่วโมงต่อมา พวกเขาก็มาถึงชายฝั่งในที่สุด อากาศมีกลิ่นของเกลือและมะพร้าว",
+        "จุดหมายปลายทางของเขาคือเกาะเล็ก ๆ ที่ปลาพูดภาษาอังกฤษได้ 'ยินดีต้อนรับ กัปตัน!' พวกมันร้องเพลงต้อนรับ มันคือจุดจบที่สมบูรณ์แบบของการเดินทางอันยาวไกล"
+      ],
+      "questions": [
+        {"question": "What did Captain Whiskers check twice at the airport?", "options": ["His passport", "His luggage", "His lucky hat"], "correctAnswer": "His passport", "explanation": "เขาตรวจหนังสือเดินทางถึงสองรอบที่สนามบิน"},
+        {"question": "When did the plane depart?", "options": ["At sunrise", "At midnight", "At sunset"], "correctAnswer": "At sunrise", "explanation": "เครื่องบินออกเดินทางตอนพระอาทิตย์ขึ้น"},
+        {"question": "What was his destination?", "options": ["A small island where the fish spoke English", "The mountain", "The city market"], "correctAnswer": "A small island where the fish spoke English", "explanation": "จุดหมายของเขาคือเกาะเล็ก ๆ ที่ปลาพูดภาษาอังกฤษได้"}
+      ],
+      "status": "approved"
+    },
+    {
+      "id": "story-medical-001",
+      "lessonId": "lesson-medical-001",
+      "category": "medical",
+      "title": "Doctor Paws' Checkup",
+      "titleThai": "การตรวจร่างกายของหมอพอวส์",
+      "teacher": "doctor-paws",
+      "level": "intermediate",
+      "paragraphs": [
+        "Pixel felt tired all day. His eyes were heavy, and his nose was warm. 'That is a symptom of a cold,' said Doctor Paws.",
+        "The doctor gave Pixel a checkup. She listened to his chest and looked at his throat. 'Do not worry,' she said kindly. 'It is not serious.'",
+        "She gave Pixel some medicine and told him to rest. 'Take this after breakfast, and drink lots of water,' she said.",
+        "Pixel slept for two days. Soon he began to recover. His energy came back, and his smile returned.",
+        "One week later, Pixel felt completely healthy. 'Thank you, Doctor Paws,' he said. 'Now I know that rest and medicine can heal almost anything.'"
+      ],
+      "translation": [
+        "พิกเซลรู้สึกเหนื่อยตลอดทั้งวัน ตาหนักและจมูกร้อน 'นั่นเป็นอาการของไข้หวัด' หมอพอวส์พูด",
+        "หมอตรวจร่างกายให้พิกเซล เธอฟังเสียงที่หน้าอกและดูที่ลำคอ 'ไม่ต้องกังวล' เธอพูดอย่างใจดี 'ไม่ร้ายแรง'",
+        "เธอให้ยากับพิกเซลและบอกให้พักผ่อน 'ทานยานี้หลังอาหารเช้า และดื่มน้ำเยอะ ๆ' เธอพูด",
+        "พิกเซลนอนหลับสองวัน ไม่นานเขาก็เริ่มฟื้นตัว พลังงานกลับมา และรอยยิ้มก็กลับมาด้วย",
+        "หนึ่งสัปดาห์ต่อมา พิกเซลรู้สึกแข็งแรงสมบูรณ์ 'ขอบคุณครับ หมอพอวส์' เขาพูด 'ตอนนี้ผมรู้แล้วว่าการพักผ่อนและยาสามารถรักษาเกือบทุกอย่างได้'"
+      ],
+      "questions": [
+        {"question": "What was Pixel's symptom?", "options": ["Tired eyes and a warm nose", "A broken leg", "A loud voice"], "correctAnswer": "Tired eyes and a warm nose", "explanation": "อาการของพิกเซลคือตาหนักและจมูกร้อน ซึ่งเป็นอาการของไข้หวัด"},
+        {"question": "What did Doctor Paws tell Pixel to do?", "options": ["Take medicine and rest", "Run every day", "Eat lots of sugar"], "correctAnswer": "Take medicine and rest", "explanation": "หมอบอกให้ทานยาและพักผ่อน พร้อมดื่มน้ำเยอะ ๆ"},
+        {"question": "How did Pixel feel after one week?", "options": ["Completely healthy", "Very tired", "Still sick"], "correctAnswer": "Completely healthy", "explanation": "หนึ่งสัปดาห์ต่อมา พิกเซลรู้สึกแข็งแรงสมบูรณ์"}
+      ],
+      "status": "approved"
+    },
+    {
+      "id": "story-law-001",
+      "lessonId": "lesson-law-001",
+      "category": "law-citizenship",
+      "title": "The Fair Rule",
+      "titleThai": "กฎที่ยุติธรรม",
+      "teacher": "loffy",
+      "level": "easy",
+      "paragraphs": [
+        "In Meowville, every citizen has a voice. The town made a law long ago: everyone may speak at the big meeting.",
+        "One day, a young cat named Taro wanted to build a clubhouse. 'I have a right to use the park,' he said.",
+        "But Loffy reminded him gently, 'You also have a duty. The rule says we share the park fairly with everyone.'",
+        "The town held a meeting. Some wanted a big clubhouse; others wanted more flowers. Everyone listened to every voice — that is the fair way.",
+        "In the end, they built a small clubhouse with a garden around it. Taro learned that a good law keeps everyone happy, and a fair rule makes a town feel like home."
+      ],
+      "translation": [
+        "ในเมืองเมียววิลล์ พลเมืองทุกคนมีเสียงของตัวเอง เมืองนี้ตั้งกฎหมายไว้นานแล้ว: ทุกคนสามารถพูดในที่ประชุมใหญ่ได้",
+        "วันหนึ่ง แมวหนุ่มชื่อทาโร่อยากสร้างบ้านสโมสร 'ผมมีสิทธิ์ที่จะใช้สวนสาธารณะ' เขาพูด",
+        "แต่ลอฟฟี่เตือนเขาอย่างสุภาพ 'คุณก็มีหน้าที่เช่นกัน กฎบอกว่าเราต้องใช้สวนสาธารณะร่วมกันอย่างเป็นธรรม'",
+        "เมืองจัดประชุม บางคนอยากได้บ้านสโมสรใหญ่ บางคนอยากได้ดอกไม้เพิ่ม ทุกคนฟังเสียงของทุกคน — นั่นคือวิถีที่ยุติธรรม",
+        "สุดท้าย พวกเขาสร้างบ้านสโมสรเล็ก ๆ พร้อมสวนรอบ ๆ ทาโร่เรียนรู้ว่ากฎหมายที่ดีทำให้ทุกคนมีความสุข และกฎที่ยุติธรรมทำให้เมืองรู้สึกเหมือนบ้าน"
+      ],
+      "questions": [
+        {"question": "What does every citizen of Meowville have?", "options": ["A voice at the big meeting", "A clubhouse", "A private garden"], "correctAnswer": "A voice at the big meeting", "explanation": "พลเมืองทุกคนมีเสียงในที่ประชุมใหญ่ตามกฎหมายของเมือง"},
+        {"question": "What did the rule say about the park?", "options": ["Share it fairly with everyone", "Only Taro may use it", "Nobody may enter"], "correctAnswer": "Share it fairly with everyone", "explanation": "กฎบอกว่าต้องใช้สวนสาธารณะร่วมกันอย่างเป็นธรรม"},
+        {"question": "What did Taro learn at the end?", "options": ["A fair rule makes a town feel like home", "Big clubhouses are better", "Flowers are boring"], "correctAnswer": "A fair rule makes a town feel like home", "explanation": "ทาโร่เรียนรู้ว่ากฎที่ยุติธรรมทำให้เมืองรู้สึกเหมือนบ้าน"}
+      ],
+      "status": "approved"
+    },
+    {
+      "id": "story-science-001",
+      "lessonId": "lesson-science-001",
+      "category": "science",
+      "title": "Nova's Little Experiment",
+      "titleThai": "การทดลองเล็ก ๆ ของโนวา",
+      "teacher": "nova",
+      "level": "intermediate",
+      "paragraphs": [
+        "Nova loved science. Every afternoon, she observed the sky with her little telescope and wrote down what she saw.",
+        "She did research in books about the red planet Mars. 'Why is it so bright tonight?' she wondered.",
+        "Nova decided to make an experiment. She put a jar of water in the sun and measured its temperature every hour.",
+        "The sun gave the water energy, and the water became warm. 'This is how solar energy works!' she shouted.",
+        "That night, Nova looked at Mars again and smiled. 'One day, humans will travel to that planet,' she said. 'And I will be ready — thanks to research, observation, and one little experiment.'"
+      ],
+      "translation": [
+        "โนว่ารักวิทยาศาสตร์ ทุกบ่ายเธอสังเกตท้องฟ้าด้วยกล้องโทรทรรศน์เล็ก ๆ และจดบันทึกสิ่งที่เห็น",
+        "เธอค้นคว้าจากหนังสือเกี่ยวกับดาวเคราะห์สีแดงชื่อดาวอังคาร 'คืนนี้ทำไมมันสว่างจัง?' เธอสงสัย",
+        "โนวาตัดสินใจทำการทดลอง เธอวางเหยือกน้ำไว้กลางแดดและวัดอุณหภูมิทุกชั่วโมง",
+        "ดวงอาทิตย์ให้พลังงานกับน้ำ และน้ำก็อุ่นขึ้น 'พลังงานแสงอาทิตย์ทำงานแบบนี้นี่เอง!' เธอตะโกน",
+        "คืนนั้น โนวามองดาวอังคารอีกครั้งแล้วยิ้ม 'สักวันหนึ่ง มนุษย์จะเดินทางไปยังดาวเคราะห์ดวงนั้น' เธอพูด 'และฉันจะพร้อม — ขอบคุณการวิจัย การสังเกต และการทดลองเล็ก ๆ หนึ่งครั้ง'"
+      ],
+      "questions": [
+        {"question": "What did Nova observe every afternoon?", "options": ["The sky with her telescope", "The sea", "The forest"], "correctAnswer": "The sky with her telescope", "explanation": "ทุกบ่ายโนวาสังเกตท้องฟ้าด้วยกล้องโทรทรรศน์ของเธอ"},
+        {"question": "Why did the water become warm?", "options": ["The sun gave it energy", "She boiled it", "The wind warmed it"], "correctAnswer": "The sun gave it energy", "explanation": "ดวงอาทิตย์ให้พลังงานกับน้ำ ทำให้น้ำอุ่นขึ้น"},
+        {"question": "Where did Nova want to travel one day?", "options": ["To the planet Mars", "To the moon", "To the North Pole"], "correctAnswer": "To the planet Mars", "explanation": "โนวาอยากเดินทางไปดาวอังคารสักวันหนึ่ง"}
+      ],
       "status": "approved"
     }
   ]

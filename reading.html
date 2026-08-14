@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CatWords — Reading Practice</title>
+<script>try{if(JSON.parse(localStorage.getItem('catwords-settings')||'{}').theme==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="data/catwords.css">
+<style>
+  .story-meta { display:flex; gap:18px; align-items:center; }
+  .story-meta img { width:118px; height:150px; object-fit:contain; border-radius:16px; background:var(--surface-soft); flex:none; }
+  .story-meta .meta-info { min-width:0; }
+  .story-meta h2 { font:700 22px var(--font-display); margin:6px 0 3px; }
+  .story-meta .title-th { color:var(--muted); font-size:13px; margin:0; }
+  .story-meta .meta-tags { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  .story-meta .meta-tags span { font-size:10px; font-weight:700; border-radius:16px; padding:5px 11px; background:var(--peach-soft); color:var(--peach-strong); }
+  .story-meta .meta-tags span.level { background:var(--lav-soft); color:#8b7fd0; }
+
+  .chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:13px; }
+  .chip { display:flex; flex-direction:column; gap:2px; text-align:left; border:1.5px solid var(--line); background:var(--surface); border-radius:13px; padding:9px 13px; cursor:pointer; transition:.15s; color:var(--ink); }
+  .chip:hover { border-color:var(--mint); background:var(--mint-soft); transform:translateY(-1px); }
+  .chip b { font:700 14px var(--font-display); }
+  .chip small { font-size:10px; color:var(--muted); }
+
+  .story-box .story-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:4px; flex-wrap:wrap; }
+  .story-box .story-head h2 { font:700 19px var(--font-display); margin:0; }
+  .story-box .toggle-translation { border:1.5px solid var(--line); background:var(--surface); border-radius:12px; padding:9px 14px; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; }
+  .story-box .toggle-translation.on { border-color:var(--mint); color:var(--mint-text); background:var(--mint-soft); }
+  .story-para { font:400 16px/1.95 var(--font-display); color:var(--ink); margin:17px 0 0; }
+  .story-word { background:var(--mint-soft); color:var(--mint-text); border-radius:6px; padding:1px 5px; font-weight:700; cursor:pointer; border-bottom:2px solid var(--mint); }
+  .story-word:hover { filter:brightness(.95); }
+  .translation-para { display:none; margin:8px 0 0; font-size:13px; color:var(--muted); line-height:1.9; }
+  .show-translation .translation-para { display:block; }
+  .story-tip { font-size:11px; color:var(--muted); margin-top:14px; }
+
+  .cq { border-top:1px solid var(--line-2); padding-top:16px; margin-top:16px; }
+  .cq b.q { display:block; font-size:14px; margin-bottom:9px; line-height:1.6; }
+  .cq-options button { display:block; width:100%; text-align:left; margin-top:8px; padding:10px 13px; border:1.5px solid var(--line); border-radius:12px; background:var(--surface); font-size:13px; cursor:pointer; color:var(--ink); }
+  .cq-options button:hover:not(:disabled) { border-color:var(--mint); background:var(--mint-soft); }
+  .cq-options button.correct { background:var(--mint-soft); border-color:var(--mint); font-weight:700; }
+  .cq-options button.wrong { background:var(--peach-soft); border-color:var(--peach); }
+  .cq-options button:disabled { cursor:default; }
+  .cq .explain { display:none; margin-top:9px; font-size:12px; color:var(--peach-strong); line-height:1.7; }
+  .cq .explain.show { display:block; }
+  .cq-actions { margin-top:22px; }
+
+  .reading-done { display:flex; gap:14px; align-items:center; background:linear-gradient(120deg,var(--mint-soft),var(--surface-glass)); border-radius:16px; padding:16px 18px; margin-bottom:16px; border:1px solid rgba(255,255,255,.5); }
+  .reading-done .rd-icon { font-size:36px; flex:none; }
+  .reading-done b { font:700 15px var(--font-display); }
+  .reading-done small { display:block; font-size:11px; color:var(--muted); margin-top:3px; }
+
+  .reward-card { display:flex; align-items:center; justify-content:space-between; gap:14px; background:linear-gradient(120deg,var(--yellow-soft),var(--surface-glass)); border-radius:16px; padding:16px 18px; flex-wrap:wrap; }
+  .reward-card .reward-xp { font:700 16px var(--font-display); }
+  .reward-card .reward-xp small { display:block; font-size:10px; color:var(--muted); margin-top:2px; }
+  .reward-card .reward-links { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
+  .word-sheet-backdrop { position:fixed; inset:0; background:rgba(30,50,60,.38); z-index:65; opacity:0; pointer-events:none; transition:.25s; }
+  .word-sheet-backdrop.show { opacity:1; pointer-events:auto; }
+  .word-sheet { position:fixed; left:0; right:0; bottom:0; z-index:70; transform:translateY(105%); transition:transform .28s cubic-bezier(.22,.8,.36,1); background:var(--surface); border-radius:24px 24px 0 0; box-shadow:0 -12px 40px rgba(30,60,70,.18); padding:20px 24px 28px; max-height:72vh; overflow:auto; }
+  .word-sheet.open { transform:translateY(0); }
+  html.dark .word-sheet { box-shadow:0 -12px 40px rgba(0,0,0,.5); }
+  .sheet-head { display:flex; justify-content:space-between; align-items:flex-start; }
+  .sheet-close { background:var(--surface-soft); border-radius:10px; padding:8px 12px; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; }
+  .word-sheet h3 { font:700 28px var(--font-display); margin:8px 0 2px; color:var(--navy); }
+  .word-sheet .pronounce { color:var(--muted); font:13px var(--font-display); margin:0 0 12px; }
+  .word-sheet .part { display:inline-block; font-size:10px; font-weight:700; border-radius:16px; padding:5px 11px; background:var(--peach-soft); color:var(--peach-strong); }
+  .word-sheet .meaning { font-size:14px; margin:14px 0 4px; }
+  .word-sheet .hint { font-size:11px; color:var(--muted); margin-top:12px; }
+
+  @media (max-width:650px) {
+    .story-meta { flex-direction:column; text-align:center; }
+    .story-meta img { width:96px; height:120px; }
+    .story-meta .meta-tags { justify-content:center; }
+    .chips { gap:8px; }
+    .chip { padding:8px 11px; }
+    .story-para { font-size:15px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="mark">🐾</span><span><b>CatWords</b><small>ACADEMY</small></span></a>
+    <nav class="nav">
+      <a data-page="index" href="index.html"><span>🏠</span>หน้าหลัก</a>
+      <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียนวันนี้</a>
+      <a data-page="reading" href="reading.html"><span>📚</span>อ่านเรื่อง</a>
+      <a data-page="progress" href="progress.html"><span>📈</span>ความก้าวหน้า</a>
+      <a data-page="collection" href="collection.html"><span>🎒</span>คอลเลกชัน</a>
+      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+    </nav>
+    <p class="side-note">🐱 Mochi รอเรียนกับคุณอยู่</p>
+  </aside>
+
+  <main class="content">
+    <header class="top">
+      <div class="profile">
+        <div class="avatar">🐼</div>
+        <div><b>คุณนักเรียน</b><small>Level 1 · Explorer</small></div>
+      </div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <span class="eyebrow" data-today>READING PRACTICE</span>
+        <h1>Reading Practice 📚</h1>
+        <p>เรื่องสั้นประจำวัน ใช้คำศัพท์จากบทเรียนของวันนี้</p>
+      </div>
+    </section>
+
+    <div id="reading-root">
+      <p class="muted">กำลังเตรียมเรื่องสั้นของวันนี้…</p>
+    </div>
+
+    <nav class="bottom">
+      <a data-page="index" href="index.html"><span>🏠</span>หน้าหลัก</a>
+      <a data-page="daily-lesson" href="daily-lesson.html"><span>📖</span>เรียน</a>
+      <a data-page="reading" href="reading.html"><span>📚</span>อ่าน</a>
+      <a data-page="progress" href="progress.html"><span>📈</span>ก้าวหน้า</a>
+      <a data-page="collection" href="collection.html"><span>🎒</span>ตัวละคร</a>
+      <a data-page="settings" href="settings.html"><span>⚙️</span>ตั้งค่า</a>
+    </nav>
+  </main>
+</div>
+
+<div class="word-sheet-backdrop" id="sheet-backdrop"></div>
+<div class="word-sheet" id="word-sheet" role="dialog" aria-modal="true" aria-label="ความหมายของคำศัพท์"></div>
+
+<script src="data/settings-store.js"></script>
+<script src="data/progress-store.js"></script>
+<script src="data/characters.js"></script>
+<script src="data/content-loader.js"></script>
+<script src="data/app-shell.js"></script>
+<script src="data/reading.js"></script>
+<script src="data/audio.js"></script>
+<script src="data/back-to-top.js"></script>
+</body>
+</html>

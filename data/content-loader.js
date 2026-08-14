@@ -2,7 +2,7 @@
   let contentPromise;
 
   const validate = (content) => {
-    if (!content || !Array.isArray(content.words) || !Array.isArray(content.lessons) || !Array.isArray(content.quizzes)) {
+    if (!content || !Array.isArray(content.words) || !Array.isArray(content.lessons) || !Array.isArray(content.quizzes) || !Array.isArray(content.stories)) {
       throw new Error('CatWords content is incomplete.');
     }
     return content;
