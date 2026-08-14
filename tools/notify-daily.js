@@ -6,15 +6,18 @@
 
    Setup:
    1. Firebase Console → Project settings → Service accounts → Generate key
-      (download JSON, base64 it:  base64 -w0 <key.json>)
-   2. Add as GitHub secret  FIREBASE_SERVICE_ACCOUNT  (paste the base64)
-   3. Optional secret APP_URL if you deploy elsewhere than GitHub Pages.
+      (download the JSON file)
+   2. Copy the ENTIRE JSON text (open file in Notepad, Ctrl+A, Ctrl+C)
+   3. Add as GitHub secret named FIREBASE_SERVICE_ACCOUNT (paste the JSON)
+      → https://github.com/<user>/CatWords/settings/secrets/actions
+   4. Optional repository variable APP_URL if you deploy elsewhere than
+      GitHub Pages.
    Run locally (dry-run, no sending):  node tools/notify-daily.js --dry-run
 */
 const fs = require('fs');
 const APP_URL = process.env.APP_URL || 'https://opichit-Ks.github.io/CatWords';
 const CONTENT_URL = process.env.CONTENT_URL || APP_URL + '/data/content-library.json';
-const SERVICE_ACCOUNT_B64 = process.env.FIREBASE_SERVICE_ACCOUNT || '';
+const SERVICE_ACCOUNT_RAW = process.env.FIREBASE_SERVICE_ACCOUNT || '';
 const DRY_RUN = process.argv.includes('--dry-run');
 
 const CATEGORY_LABEL = {
@@ -51,7 +54,7 @@ async function main() {
   const today = localDate(now);
   console.log(`[${today} ${String(hour).padStart(2, '0')}:00 UTC] starting`);
 
-  if (!SERVICE_ACCOUNT_B64 && !DRY_RUN) {
+  if (!SERVICE_ACCOUNT_RAW && !DRY_RUN) {
     console.error('FIREBASE_SERVICE_ACCOUNT not set — add it as a GitHub secret (see tools/notify-daily.js header).');
     process.exit(1);
   }
@@ -74,8 +77,14 @@ async function main() {
   }
 
   // ---- admin SDK ----
+  // รองรับทั้ง JSON ตรง ๆ และ base64 (ของเก่า) เพื่อไม่ให้ผู้ใช้ต้องแปลง
   const admin = require('firebase-admin');
-  const serviceAccount = JSON.parse(Buffer.from(SERVICE_ACCOUNT_B64, 'base64').toString('utf8'));
+  let serviceAccount;
+  try {
+    serviceAccount = JSON.parse(SERVICE_ACCOUNT_RAW);
+  } catch (e) {
+    serviceAccount = JSON.parse(Buffer.from(SERVICE_ACCOUNT_RAW, 'base64').toString('utf8'));
+  }
   admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
   const db = admin.firestore();
 
