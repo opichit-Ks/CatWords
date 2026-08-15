@@ -2,8 +2,10 @@ name: Send daily word notification
 
 on:
   schedule:
-    # ทุกชั่วโมง (UTC) — สคริปต์จะส่งเฉพาะผู้ใช้ที่ reminderUtcHour ตรงชั่วโมงนั้น
-    - cron: '5 * * * *'
+    # ทุก 15 นาที (UTC) — GitHub มักดีเลย์ run หลายสิบนาที ถ้ารอรอบเดียวต่อชั่วโมง
+    # run อาจข้ามชั่วโมงเป้าหมายแล้วไม่ส่ง สคริปต์จะส่งเฉพาะผู้ใช้ที่ reminderUtcHour
+    # ตรงชั่วโมงนั้น และ guard ด้วย lastPushDate กันส่งซ้ำอยู่แล้ว
+    - cron: '*/15 * * * *'
   workflow_dispatch: {}   # เปิดใช้มือจาก GitHub → Actions → Run workflow
 
 jobs:

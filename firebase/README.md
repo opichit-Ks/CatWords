@@ -83,7 +83,7 @@ firebase emulators:start --only firestore,functions
 1. Firebase Console → Project settings → **Service accounts** → Generate new private key (ดาวน์โหลด JSON)
 2. base64: `base64 -w0 <key.json>` แล้วเอาไปใส่ GitHub → Settings → **Secrets and variables → Actions → New secret** ชื่อ `FIREBASE_SERVICE_ACCOUNT`
 3. (Optional) ตั้ง `APP_URL` ใน repository variables ถ้าไม่ใช้ GitHub Pages
-4. Workflow วิ่งทุกชั่วโมงอัตโนมัติ (หรือกด Actions → Send daily word notification → Run workflow เพื่อเทสต์)
+4. Workflow วิ่งทุก 15 นาทีอัตโนมัติ (GitHub มักดีเลย์ run หลายสิบนาที — ถ้ารอรอบเดียวต่อชั่วโมงอาจข้ามเวลาเป้าหมาย; สคริปต์ guard ด้วย lastPushDate กันส่งซ้ำ) หรือกด Actions → Send daily word notification → Run workflow เพื่อเทสต์
 5. ทดสอบ local: `node tools/notify-daily.js --dry-run`
 
 ## Endpoint (เมื่ออัปเกรดเป็น Blaze)

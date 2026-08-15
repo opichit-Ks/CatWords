@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /* CatWords daily word notification — free alternative to Cloud Functions.
-   Runs hourly via GitHub Actions cron. Mirrors firebase/functions/index.js
+   Runs every 15 minutes via GitHub Actions cron (robust against delayed runs).
+   Mirrors firebase/functions/index.js
    sendDailyWordNotification: fetch content, pick today's lesson, match each
    opted-in user's reminderUtcHour, send FCM multicast, prune dead tokens.
 
